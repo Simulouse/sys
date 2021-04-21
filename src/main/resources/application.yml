@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.3.4:3306/medicine_management?characterEncoding=utf8&useSSL=false
-    password: root
+    url: jdbc:mysql://localhost:3306/medicine_management?characterEncoding=utf8&useSSL=false
     username: root
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    type: com.zaxxer.hikari.HikariDataSource
 #    hikari:
@@ -10,8 +10,7 @@ spring:
 #      maximum-pool-size: 5
 #      idle-timeout: 30000
 #      connection-timeout: 20000
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.sim.sys.entity
+mybatis.mapper-locations: classpath:mapper/*.xml
+mybatis.type-aliases-package: com.sim.sys.entity
 server:
   port: 8080

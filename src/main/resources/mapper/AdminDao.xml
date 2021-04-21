@@ -7,6 +7,10 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="verifyUser" resultMap="adminMap">
+        select * from medicine_management.tb_admin where account=#{account} and password=#{password}
+    </select>
+
     <!--查询单个-->
     <select id="queryById" resultMap="adminMap">
         select

@@ -1,6 +1,7 @@
 package com.sim.sys.service;
 
 import com.sim.sys.entity.Admin;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ import java.util.List;
  * @since 2021-04-20 10:11:49
  */
 public interface AdminService {
+
+    Admin verifyUser(@Param("account") String pharmacistId, @Param("password")String password);
 
     /**
      * 通过ID查询单条数据

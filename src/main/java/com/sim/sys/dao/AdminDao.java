@@ -1,6 +1,7 @@
 package com.sim.sys.dao;
 
 import com.sim.sys.entity.Admin;
+import com.sim.sys.entity.Pharmacist;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public interface AdminDao {
 
+    Admin verifyUser(@Param("account") String pharmacistId, @Param("password")String password);
     /**
      * 通过ID查询单条数据
      *

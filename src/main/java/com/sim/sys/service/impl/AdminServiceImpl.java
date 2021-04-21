@@ -1,7 +1,9 @@
 package com.sim.sys.service.impl;
 
+import com.sim.sys.dao.PharmacistDao;
 import com.sim.sys.entity.Admin;
 import com.sim.sys.dao.AdminDao;
+import com.sim.sys.entity.Pharmacist;
 import com.sim.sys.service.AdminService;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,15 @@ import java.util.List;
  */
 @Service("tbAdminService")
 public class AdminServiceImpl implements AdminService {
+
     @Resource
     private AdminDao adminDao;
+
+    @Override
+    public Admin verifyUser(String account, String password) {
+        System.out.println("=====");
+        return adminDao.verifyUser(account, password);
+    }
 
     /**
      * 通过ID查询单条数据

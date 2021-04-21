@@ -1,7 +1,9 @@
 package com.sim.sys.service;
 
+import com.sim.sys.dao.MedicineDao;
 import com.sim.sys.entity.Medicine;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**

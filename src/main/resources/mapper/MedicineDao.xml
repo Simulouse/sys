@@ -52,7 +52,7 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="medicineId" useGeneratedKeys="true">
-        insert into medicine_management.tb_medicine(medicine_id,name, price, rest_nums, expired_time)
+        insert into medicine_management.tb_medicine(medicine_id , name, price, rest_nums, expired_time)
         values (#{medicineId},#{name}, #{price}, #{restNums}, #{expiredTime})
     </insert>
 

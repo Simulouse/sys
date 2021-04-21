@@ -40,8 +40,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="orderId" useGeneratedKeys="true">
-        insert into medicine_management.tb_entering(entering_time)
-        values (#{enteringTime})
+        insert into medicine_management.tb_entering(order_id , entering_time)
+        values (#{orderId},#{enteringTime})
     </insert>
 
     <insert id="insertBatch" keyProperty="orderId" useGeneratedKeys="true">

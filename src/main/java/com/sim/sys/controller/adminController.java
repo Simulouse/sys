@@ -1,7 +1,9 @@
 package com.sim.sys.controller;
 
+import com.sim.sys.entity.Entering;
 import com.sim.sys.entity.Medicine;
 import com.sim.sys.service.impl.AdminServiceImpl;
+import com.sim.sys.service.impl.EnteringServiceImpl;
 import com.sim.sys.service.impl.MedicineServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class AdminController {
     AdminServiceImpl adminService;
     @Autowired
     MedicineServiceImpl medicineService;
+    @Autowired
+    EnteringServiceImpl enteringService;
 
     /**
      * 登陆
@@ -86,8 +90,8 @@ public class AdminController {
     }
 
     @PostMapping("/medicine/selectAllMedicine")
-    @ApiOperation(value = "查询药品信息")
-    public List<Medicine> selectAllMedicine(@RequestParam int offset,@RequestParam int limit){
+    @ApiOperation(value = "查询指定行药品信息（分页）")
+    public List<Medicine> selectLimitMedicine(@RequestParam int offset,@RequestParam int limit){
         if(medicineService.queryAllByLimit(offset,limit)!=null){
             System.out.println("查询成功");
             return medicineService.queryAllByLimit(offset,limit);
@@ -95,6 +99,34 @@ public class AdminController {
         return null;
     }
 
+    @PostMapping("/entering/insertEntering")
+    @ApiOperation(value = "登记入库信息")
+    public String insertEntering(@RequestBody Entering entering){
+        if(enteringService.insert(entering)!=null){
+            System.out.println("入库登记成功");
+            return "ok";
+        }
+        return "no";
+    }
 
+    @PostMapping("/entering/selectEntering")
+    @ApiOperation(value = "查询入库信息")
+    public List<Entering> selectLimitEntering(@RequestParam int offset,@RequestParam int limit){
+        if(enteringService.queryAllByLimit(offset,limit)!=null){
+            System.out.println("查询成功");
+            return enteringService.queryAllByLimit(offset,limit);
+        }
+        return null;
+    }
+
+    @PostMapping("/entering/updateEnteringById")
+    @ApiOperation(value = "更新入库信息")
+    public Entering updateEnteringById(@RequestBody Entering entering){
+        if(enteringService.update(entering)!=null){
+            System.out.println("修改成功");
+            return enteringService.update(entering);
+        }
+        return null;
+    }
 
 }

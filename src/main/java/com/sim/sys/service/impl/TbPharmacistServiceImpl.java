@@ -3,6 +3,7 @@ package com.sim.sys.service.impl;
 import com.sim.sys.entity.TbPharmacist;
 import com.sim.sys.dao.TbPharmacistDao;
 import com.sim.sys.service.TbPharmacistService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,12 +17,14 @@ import java.util.List;
  */
 @Service("tbPharmacistService")
 public class TbPharmacistServiceImpl implements TbPharmacistService {
+
     @Resource
-    private TbPharmacistDao tbPharmacistDao;
+    public TbPharmacistDao tbPharmacistDao;
 
     @Override
-    public TbPharmacist verifyUser(String account, String password) {
-        return tbPharmacistDao.verifyUser(account,password);
+    public TbPharmacist verifyUser(String pharmacistId, String password) {
+        System.out.println("=====");
+        return tbPharmacistDao.verifyUser(pharmacistId,password);
     }
 
     /**

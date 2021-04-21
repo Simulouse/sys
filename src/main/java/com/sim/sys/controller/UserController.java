@@ -1,6 +1,7 @@
 package com.sim.sys.controller;
 
 import com.sim.sys.service.TbPharmacistService;
+import com.sim.sys.service.impl.TbPharmacistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    TbPharmacistService userService;
+    TbPharmacistServiceImpl tbPharmacistService;
 
-    @RequestMapping("/signIn")
-    public String  verifyUserSignIn(@RequestParam String account,@RequestParam String password){
-        if(userService.verifyUser(account,password)!=null){
+    @GetMapping("/signIn")
+    public String  verifyUserSignIn(@RequestParam String pharmacistId,@RequestParam String password){
+        if(tbPharmacistService.verifyUser(pharmacistId,password)!=null){
             System.out.println("登陆成功");
             return "ok";
         }

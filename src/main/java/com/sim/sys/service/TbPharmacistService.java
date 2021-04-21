@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface TbPharmacistService {
 
-    TbPharmacist verifyUser(String account,String password);
+    TbPharmacist verifyUser(String pharmacistId,String password);
     /**
      * 通过ID查询单条数据
      *

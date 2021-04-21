@@ -10,3 +10,7 @@ spring:
 #      maximum-pool-size: 5
 #      idle-timeout: 30000
 #      connection-timeout: 20000
+mybatis.mapper-locations: classpath:resources/mapper/*.xml
+mybatis.type-aliases-package: com.sim.sys.entity
+server:
+  port: 8080

@@ -8,8 +8,8 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="verifyUser" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select * from tb_user where accountid=#{account} and password=#{password}
+    <select id="verifyUser" resultMap="TbPharmacistMap">
+        select * from medicine_management.tb_pharmacist where pharmacist_id=#{pharmacistId} and password=#{password}
     </select>
 
     <!--查询单个-->

@@ -13,7 +13,8 @@ import java.util.List;
  */
 public interface TbPharmacistDao {
 
-    TbPharmacist  verifyUser(String account,String password);
+
+    TbPharmacist verifyUser(@Param("pharmacistId") String pharmacistId,@Param("password")String password);
 
     /**
      * 通过ID查询单条数据

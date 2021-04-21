@@ -1,25 +1,25 @@
 package com.sim.sys.dao;
 
-import com.sim.sys.entity.TbOrder;
+import com.sim.sys.entity.Admin;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * (TbOrder)表数据库访问层
+ * (TbAdmin)表数据库访问层
  *
  * @author makejava
- * @since 2021-04-20 09:46:17
+ * @since 2021-04-20 10:11:49
  */
-public interface TbOrderDao {
+public interface AdminDao {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param orderId 主键
+     * @param account 主键
      * @return 实例对象
      */
-    TbOrder queryById(String orderId);
+    Admin queryById(String account);
 
     /**
      * 查询指定行数据
@@ -28,56 +28,56 @@ public interface TbOrderDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<TbOrder> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Admin> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param tbOrder 实例对象
+     * @param admin 实例对象
      * @return 对象列表
      */
-    List<TbOrder> queryAll(TbOrder tbOrder);
+    List<Admin> queryAll(Admin admin);
 
     /**
      * 新增数据
      *
-     * @param tbOrder 实例对象
+     * @param admin 实例对象
      * @return 影响行数
      */
-    int insert(TbOrder tbOrder);
+    int insert(Admin admin);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<TbOrder> 实例对象列表
+     * @param entities List<TbAdmin> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<TbOrder> entities);
+    int insertBatch(@Param("entities") List<Admin> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<TbOrder> 实例对象列表
+     * @param entities List<TbAdmin> 实例对象列表
      * @return 影响行数
      */
-    int insertOrUpdateBatch(@Param("entities") List<TbOrder> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Admin> entities);
 
     /**
      * 修改数据
      *
-     * @param tbOrder 实例对象
+     * @param admin 实例对象
      * @return 影响行数
      */
-    int update(TbOrder tbOrder);
+    int update(Admin admin);
 
     /**
      * 通过主键删除数据
      *
-     * @param orderId 主键
+     * @param account 主键
      * @return 影响行数
      */
-    int deleteById(String orderId);
+    int deleteById(String account);
 
 }
 

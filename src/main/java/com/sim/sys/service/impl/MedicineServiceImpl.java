@@ -1,8 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.entity.TbMedicine;
-import com.sim.sys.dao.TbMedicineDao;
-import com.sim.sys.service.TbMedicineService;
+import com.sim.sys.entity.Medicine;
+import com.sim.sys.dao.MedicineDao;
+import com.sim.sys.service.MedicineService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,9 +15,9 @@ import java.util.List;
  * @since 2021-04-20 09:46:01
  */
 @Service("tbMedicineService")
-public class TbMedicineServiceImpl implements TbMedicineService {
+public class MedicineServiceImpl implements MedicineService {
     @Resource
-    private TbMedicineDao tbMedicineDao;
+    private MedicineDao medicineDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,8 +26,8 @@ public class TbMedicineServiceImpl implements TbMedicineService {
      * @return 实例对象
      */
     @Override
-    public TbMedicine queryById(String medicineId) {
-        return this.tbMedicineDao.queryById(medicineId);
+    public Medicine queryById(String medicineId) {
+        return this.medicineDao.queryById(medicineId);
     }
 
     /**
@@ -38,32 +38,32 @@ public class TbMedicineServiceImpl implements TbMedicineService {
      * @return 对象列表
      */
     @Override
-    public List<TbMedicine> queryAllByLimit(int offset, int limit) {
-        return this.tbMedicineDao.queryAllByLimit(offset, limit);
+    public List<Medicine> queryAllByLimit(int offset, int limit) {
+        return this.medicineDao.queryAllByLimit(offset, limit);
     }
 
     /**
      * 新增数据
      *
-     * @param tbMedicine 实例对象
+     * @param medicine 实例对象
      * @return 实例对象
      */
     @Override
-    public TbMedicine insert(TbMedicine tbMedicine) {
-        this.tbMedicineDao.insert(tbMedicine);
-        return tbMedicine;
+    public Medicine insert(Medicine medicine) {
+        this.medicineDao.insert(medicine);
+        return medicine;
     }
 
     /**
      * 修改数据
      *
-     * @param tbMedicine 实例对象
+     * @param medicine 实例对象
      * @return 实例对象
      */
     @Override
-    public TbMedicine update(TbMedicine tbMedicine) {
-        this.tbMedicineDao.update(tbMedicine);
-        return this.queryById(tbMedicine.getMedicineId());
+    public Medicine update(Medicine medicine) {
+        this.medicineDao.update(medicine);
+        return this.queryById(medicine.getMedicineId());
     }
 
     /**
@@ -74,6 +74,6 @@ public class TbMedicineServiceImpl implements TbMedicineService {
      */
     @Override
     public boolean deleteById(String medicineId) {
-        return this.tbMedicineDao.deleteById(medicineId) > 0;
+        return this.medicineDao.deleteById(medicineId) > 0;
     }
 }

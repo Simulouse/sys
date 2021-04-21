@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sim.sys.dao.TbSupplierDao">
+<mapper namespace="com.sim.sys.dao.SupplierDao">
 
-    <resultMap type="com.sim.sys.entity.TbSupplier" id="TbSupplierMap">
+    <resultMap type="com.sim.sys.entity.Supplier" id="TbSupplierMap">
         <result property="supplierId" column="supplier_id" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>

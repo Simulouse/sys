@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:46:17
  */
-public class TbOrder implements Serializable {
+public class Order implements Serializable {
     private static final long serialVersionUID = -68656071467224494L;
 
     private String orderId;

@@ -1,8 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.entity.TbOrder;
-import com.sim.sys.dao.TbOrderDao;
-import com.sim.sys.service.TbOrderService;
+import com.sim.sys.entity.Order;
+import com.sim.sys.dao.OrderDao;
+import com.sim.sys.service.OrderService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,9 +15,9 @@ import java.util.List;
  * @since 2021-04-20 09:46:18
  */
 @Service("tbOrderService")
-public class TbOrderServiceImpl implements TbOrderService {
+public class OrderServiceImpl implements OrderService {
     @Resource
-    private TbOrderDao tbOrderDao;
+    private OrderDao orderDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,8 +26,8 @@ public class TbOrderServiceImpl implements TbOrderService {
      * @return 实例对象
      */
     @Override
-    public TbOrder queryById(String orderId) {
-        return this.tbOrderDao.queryById(orderId);
+    public Order queryById(String orderId) {
+        return this.orderDao.queryById(orderId);
     }
 
     /**
@@ -38,32 +38,32 @@ public class TbOrderServiceImpl implements TbOrderService {
      * @return 对象列表
      */
     @Override
-    public List<TbOrder> queryAllByLimit(int offset, int limit) {
-        return this.tbOrderDao.queryAllByLimit(offset, limit);
+    public List<Order> queryAllByLimit(int offset, int limit) {
+        return this.orderDao.queryAllByLimit(offset, limit);
     }
 
     /**
      * 新增数据
      *
-     * @param tbOrder 实例对象
+     * @param order 实例对象
      * @return 实例对象
      */
     @Override
-    public TbOrder insert(TbOrder tbOrder) {
-        this.tbOrderDao.insert(tbOrder);
-        return tbOrder;
+    public Order insert(Order order) {
+        this.orderDao.insert(order);
+        return order;
     }
 
     /**
      * 修改数据
      *
-     * @param tbOrder 实例对象
+     * @param order 实例对象
      * @return 实例对象
      */
     @Override
-    public TbOrder update(TbOrder tbOrder) {
-        this.tbOrderDao.update(tbOrder);
-        return this.queryById(tbOrder.getOrderId());
+    public Order update(Order order) {
+        this.orderDao.update(order);
+        return this.queryById(order.getOrderId());
     }
 
     /**
@@ -74,6 +74,6 @@ public class TbOrderServiceImpl implements TbOrderService {
      */
     @Override
     public boolean deleteById(String orderId) {
-        return this.tbOrderDao.deleteById(orderId) > 0;
+        return this.orderDao.deleteById(orderId) > 0;
     }
 }

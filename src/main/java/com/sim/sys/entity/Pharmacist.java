@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:46:33
  */
-public class TbPharmacist implements Serializable {
+public class Pharmacist implements Serializable {
     private static final long serialVersionUID = -14544306066284092L;
 
     private String pharmacistId;

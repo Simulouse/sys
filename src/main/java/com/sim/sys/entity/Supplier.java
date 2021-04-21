@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:46:55
  */
-public class TbSupplier implements Serializable {
+public class Supplier implements Serializable {
     private static final long serialVersionUID = -27923138428396561L;
 
     private String supplierId;

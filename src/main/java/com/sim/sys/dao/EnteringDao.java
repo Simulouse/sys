@@ -1,25 +1,25 @@
 package com.sim.sys.dao;
 
-import com.sim.sys.entity.TbAdmin;
+import com.sim.sys.entity.Entering;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * (TbAdmin)表数据库访问层
+ * (TbEntering)表数据库访问层
  *
  * @author makejava
- * @since 2021-04-20 10:11:49
+ * @since 2021-04-20 09:44:44
  */
-public interface TbAdminDao {
+public interface EnteringDao {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param account 主键
+     * @param orderId 主键
      * @return 实例对象
      */
-    TbAdmin queryById(String account);
+    Entering queryById(String orderId);
 
     /**
      * 查询指定行数据
@@ -28,56 +28,56 @@ public interface TbAdminDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<TbAdmin> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Entering> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param tbAdmin 实例对象
+     * @param entering 实例对象
      * @return 对象列表
      */
-    List<TbAdmin> queryAll(TbAdmin tbAdmin);
+    List<Entering> queryAll(Entering entering);
 
     /**
      * 新增数据
      *
-     * @param tbAdmin 实例对象
+     * @param entering 实例对象
      * @return 影响行数
      */
-    int insert(TbAdmin tbAdmin);
+    int insert(Entering entering);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<TbAdmin> 实例对象列表
+     * @param entities List<TbEntering> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<TbAdmin> entities);
+    int insertBatch(@Param("entities") List<Entering> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<TbAdmin> 实例对象列表
+     * @param entities List<TbEntering> 实例对象列表
      * @return 影响行数
      */
-    int insertOrUpdateBatch(@Param("entities") List<TbAdmin> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Entering> entities);
 
     /**
      * 修改数据
      *
-     * @param tbAdmin 实例对象
+     * @param entering 实例对象
      * @return 影响行数
      */
-    int update(TbAdmin tbAdmin);
+    int update(Entering entering);
 
     /**
      * 通过主键删除数据
      *
-     * @param account 主键
+     * @param orderId 主键
      * @return 影响行数
      */
-    int deleteById(String account);
+    int deleteById(String orderId);
 
 }
 

@@ -1,8 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.entity.TbEntering;
-import com.sim.sys.dao.TbEnteringDao;
-import com.sim.sys.service.TbEnteringService;
+import com.sim.sys.entity.Entering;
+import com.sim.sys.dao.EnteringDao;
+import com.sim.sys.service.EnteringService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,9 +15,9 @@ import java.util.List;
  * @since 2021-04-20 09:44:49
  */
 @Service("tbEnteringService")
-public class TbEnteringServiceImpl implements TbEnteringService {
+public class EnteringServiceImpl implements EnteringService {
     @Resource
-    private TbEnteringDao tbEnteringDao;
+    private EnteringDao enteringDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,8 +26,8 @@ public class TbEnteringServiceImpl implements TbEnteringService {
      * @return 实例对象
      */
     @Override
-    public TbEntering queryById(String orderId) {
-        return this.tbEnteringDao.queryById(orderId);
+    public Entering queryById(String orderId) {
+        return this.enteringDao.queryById(orderId);
     }
 
     /**
@@ -38,32 +38,32 @@ public class TbEnteringServiceImpl implements TbEnteringService {
      * @return 对象列表
      */
     @Override
-    public List<TbEntering> queryAllByLimit(int offset, int limit) {
-        return this.tbEnteringDao.queryAllByLimit(offset, limit);
+    public List<Entering> queryAllByLimit(int offset, int limit) {
+        return this.enteringDao.queryAllByLimit(offset, limit);
     }
 
     /**
      * 新增数据
      *
-     * @param tbEntering 实例对象
+     * @param entering 实例对象
      * @return 实例对象
      */
     @Override
-    public TbEntering insert(TbEntering tbEntering) {
-        this.tbEnteringDao.insert(tbEntering);
-        return tbEntering;
+    public Entering insert(Entering entering) {
+        this.enteringDao.insert(entering);
+        return entering;
     }
 
     /**
      * 修改数据
      *
-     * @param tbEntering 实例对象
+     * @param entering 实例对象
      * @return 实例对象
      */
     @Override
-    public TbEntering update(TbEntering tbEntering) {
-        this.tbEnteringDao.update(tbEntering);
-        return this.queryById(tbEntering.getOrderId());
+    public Entering update(Entering entering) {
+        this.enteringDao.update(entering);
+        return this.queryById(entering.getOrderId());
     }
 
     /**
@@ -74,6 +74,6 @@ public class TbEnteringServiceImpl implements TbEnteringService {
      */
     @Override
     public boolean deleteById(String orderId) {
-        return this.tbEnteringDao.deleteById(orderId) > 0;
+        return this.enteringDao.deleteById(orderId) > 0;
     }
 }

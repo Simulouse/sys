@@ -1,8 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.entity.TbAdmin;
-import com.sim.sys.dao.TbAdminDao;
-import com.sim.sys.service.TbAdminService;
+import com.sim.sys.entity.Admin;
+import com.sim.sys.dao.AdminDao;
+import com.sim.sys.service.AdminService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,9 +15,9 @@ import java.util.List;
  * @since 2021-04-20 10:11:49
  */
 @Service("tbAdminService")
-public class TbAdminServiceImpl implements TbAdminService {
+public class AdminServiceImpl implements AdminService {
     @Resource
-    private TbAdminDao tbAdminDao;
+    private AdminDao adminDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,8 +26,8 @@ public class TbAdminServiceImpl implements TbAdminService {
      * @return 实例对象
      */
     @Override
-    public TbAdmin queryById(String account) {
-        return this.tbAdminDao.queryById(account);
+    public Admin queryById(String account) {
+        return this.adminDao.queryById(account);
     }
 
     /**
@@ -38,32 +38,32 @@ public class TbAdminServiceImpl implements TbAdminService {
      * @return 对象列表
      */
     @Override
-    public List<TbAdmin> queryAllByLimit(int offset, int limit) {
-        return this.tbAdminDao.queryAllByLimit(offset, limit);
+    public List<Admin> queryAllByLimit(int offset, int limit) {
+        return this.adminDao.queryAllByLimit(offset, limit);
     }
 
     /**
      * 新增数据
      *
-     * @param tbAdmin 实例对象
+     * @param admin 实例对象
      * @return 实例对象
      */
     @Override
-    public TbAdmin insert(TbAdmin tbAdmin) {
-        this.tbAdminDao.insert(tbAdmin);
-        return tbAdmin;
+    public Admin insert(Admin admin) {
+        this.adminDao.insert(admin);
+        return admin;
     }
 
     /**
      * 修改数据
      *
-     * @param tbAdmin 实例对象
+     * @param admin 实例对象
      * @return 实例对象
      */
     @Override
-    public TbAdmin update(TbAdmin tbAdmin) {
-        this.tbAdminDao.update(tbAdmin);
-        return this.queryById(tbAdmin.getAccount());
+    public Admin update(Admin admin) {
+        this.adminDao.update(admin);
+        return this.queryById(admin.getAccount());
     }
 
     /**
@@ -74,6 +74,6 @@ public class TbAdminServiceImpl implements TbAdminService {
      */
     @Override
     public boolean deleteById(String account) {
-        return this.tbAdminDao.deleteById(account) > 0;
+        return this.adminDao.deleteById(account) > 0;
     }
 }

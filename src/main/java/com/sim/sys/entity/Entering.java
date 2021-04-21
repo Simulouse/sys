@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:44:41
  */
-public class TbEntering implements Serializable {
+public class Entering implements Serializable {
     private static final long serialVersionUID = -88110460761766315L;
 
     private String orderId;

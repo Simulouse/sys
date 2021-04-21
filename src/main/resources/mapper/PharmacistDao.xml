@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sim.sys.dao.TbPharmacistDao">
+<mapper namespace="com.sim.sys.dao.PharmacistDao">
 
-    <resultMap type="com.sim.sys.entity.TbPharmacist" id="TbPharmacistMap">
+    <resultMap id="pharmacistMap" type="com.sim.sys.entity.Pharmacist">
         <result property="pharmacistId" column="pharmacist_id" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="verifyUser" resultMap="TbPharmacistMap">
+    <select id="verifyUser" resultMap="pharmacistMap">
         select * from medicine_management.tb_pharmacist where pharmacist_id=#{pharmacistId} and password=#{password}
     </select>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="TbPharmacistMap">
+    <select id="queryById" resultMap="pharmacistMap
+">
         select
           pharmacist_id, password, name
         from medicine_management.tb_pharmacist
@@ -21,7 +22,8 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TbPharmacistMap">
+    <select id="queryAllByLimit" resultMap="pharmacistMap
+">
         select
           pharmacist_id, password, name
         from medicine_management.tb_pharmacist
@@ -29,7 +31,8 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TbPharmacistMap">
+    <select id="queryAll" resultMap="pharmacistMap
+">
         select
         pharmacist_id, password, name
         from medicine_management.tb_pharmacist

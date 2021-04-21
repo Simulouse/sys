@@ -1,7 +1,6 @@
 package com.sim.sys.controller;
 
-import com.sim.sys.service.TbPharmacistService;
-import com.sim.sys.service.impl.TbPharmacistServiceImpl;
+import com.sim.sys.service.impl.PharmacistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    TbPharmacistServiceImpl tbPharmacistService;
+    PharmacistServiceImpl tbPharmacistService;
 
     @GetMapping("/signIn")
     public String  verifyUserSignIn(@RequestParam String pharmacistId,@RequestParam String password){

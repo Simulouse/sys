@@ -1,8 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.entity.TbSupplier;
-import com.sim.sys.dao.TbSupplierDao;
-import com.sim.sys.service.TbSupplierService;
+import com.sim.sys.entity.Supplier;
+import com.sim.sys.dao.SupplierDao;
+import com.sim.sys.service.SupplierService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,9 +15,9 @@ import java.util.List;
  * @since 2021-04-20 09:46:56
  */
 @Service("tbSupplierService")
-public class TbSupplierServiceImpl implements TbSupplierService {
+public class SupplierServiceImpl implements SupplierService {
     @Resource
-    private TbSupplierDao tbSupplierDao;
+    private SupplierDao tbSupplierDao;
 
     /**
      * 通过ID查询单条数据
@@ -26,7 +26,7 @@ public class TbSupplierServiceImpl implements TbSupplierService {
      * @return 实例对象
      */
     @Override
-    public TbSupplier queryById(String supplierId) {
+    public Supplier queryById(String supplierId) {
         return this.tbSupplierDao.queryById(supplierId);
     }
 
@@ -38,32 +38,32 @@ public class TbSupplierServiceImpl implements TbSupplierService {
      * @return 对象列表
      */
     @Override
-    public List<TbSupplier> queryAllByLimit(int offset, int limit) {
+    public List<Supplier> queryAllByLimit(int offset, int limit) {
         return this.tbSupplierDao.queryAllByLimit(offset, limit);
     }
 
     /**
      * 新增数据
      *
-     * @param tbSupplier 实例对象
+     * @param supplier 实例对象
      * @return 实例对象
      */
     @Override
-    public TbSupplier insert(TbSupplier tbSupplier) {
-        this.tbSupplierDao.insert(tbSupplier);
-        return tbSupplier;
+    public Supplier insert(Supplier supplier) {
+        this.tbSupplierDao.insert(supplier);
+        return supplier;
     }
 
     /**
      * 修改数据
      *
-     * @param tbSupplier 实例对象
+     * @param supplier 实例对象
      * @return 实例对象
      */
     @Override
-    public TbSupplier update(TbSupplier tbSupplier) {
-        this.tbSupplierDao.update(tbSupplier);
-        return this.queryById(tbSupplier.getSupplierId());
+    public Supplier update(Supplier supplier) {
+        this.tbSupplierDao.update(supplier);
+        return this.queryById(supplier.getSupplierId());
     }
 
     /**

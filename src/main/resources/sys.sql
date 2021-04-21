@@ -1,4 +1,4 @@
-create database medidcine_management;
+create database medicine_management;
 use medidcine_management;
 DROP TABLE IF EXISTS tb_order;
 create table IF NOT EXISTS tb_order (

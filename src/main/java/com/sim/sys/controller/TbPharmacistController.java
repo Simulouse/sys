@@ -1,7 +1,7 @@
 package com.sim.sys.controller;
 
-import com.sim.sys.entity.TbPharmacist;
-import com.sim.sys.service.TbPharmacistService;
+import com.sim.sys.entity.Pharmacist;
+import com.sim.sys.service.PharmacistService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ public class TbPharmacistController {
      * 服务对象
      */
     @Resource
-    private TbPharmacistService tbPharmacistService;
+    private PharmacistService pharmacistService;
 
     /**
      * 通过主键查询单条数据
@@ -28,8 +28,8 @@ public class TbPharmacistController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public TbPharmacist selectOne(String id) {
-        return this.tbPharmacistService.queryById(id);
+    public Pharmacist selectOne(String id) {
+        return this.pharmacistService.queryById(id);
     }
 
 }

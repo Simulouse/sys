@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:46:00
  */
-public class TbMedicine implements Serializable {
+public class Medicine implements Serializable {
     private static final long serialVersionUID = 211268493863002732L;
 
     private String medicineId;

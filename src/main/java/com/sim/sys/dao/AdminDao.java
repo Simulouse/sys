@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface AdminDao {
 
-    Admin verifyUser(@Param("account") String pharmacistId, @Param("password")String password);
+    Admin verifyUser(Admin admin);
     /**
      * 通过ID查询单条数据
      *

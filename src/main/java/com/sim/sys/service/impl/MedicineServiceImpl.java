@@ -2,6 +2,7 @@ package com.sim.sys.service.impl;
 
 import com.sim.sys.entity.Medicine;
 import com.sim.sys.dao.MedicineDao;
+import com.sim.sys.entity.Result;
 import com.sim.sys.service.MedicineService;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +50,14 @@ public class MedicineServiceImpl implements MedicineService {
      * @return 实例对象
      */
     @Override
-    public Medicine insert(Medicine medicine) {
-        this.medicineDao.insert(medicine);
-        return medicine;
+    public Result insert(Medicine medicine) {
+        Result result = new Result();
+
+        if (this.medicineDao.queryById(medicine.getMedicineId()) != null) result.setResult("no");
+        else if (this.medicineDao.insert(medicine) == 0) result.setResult("no");
+        else result.setResult("yes");
+
+        return result;
     }
 
     /**

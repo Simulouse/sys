@@ -4,7 +4,7 @@ import java.util.Date;
 import java.io.Serializable;
 
 /**
- * (TbMedicine)实体类
+ * (Medicine)实体类
  *
  * @author makejava
  * @since 2021-04-20 09:46:00

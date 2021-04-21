@@ -8,14 +8,14 @@
     </resultMap>
 
     <select id="verifyUser" resultMap="adminMap">
-        select * from medicine_management.tb_admin where account=#{account} and password=#{password}
+        select * from medicine_management.admin where account=#{account} and password=#{password}
     </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="adminMap">
         select
           account, password
-        from medicine_management.tb_admin
+        from medicine_management.admin
         where account = #{account}
     </select>
 
@@ -23,7 +23,7 @@
     <select id="queryAllByLimit" resultMap="adminMap">
         select
           account, password
-        from medicine_management.tb_admin
+        from medicine_management.admin
         limit #{offset}, #{limit}
     </select>
 
@@ -31,7 +31,7 @@
     <select id="queryAll" resultMap="adminMap">
         select
         account, password
-        from medicine_management.tb_admin
+        from medicine_management.admin
         <where>
             <if test="account != null and account != ''">
                 and account = #{account}
@@ -44,12 +44,12 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="account" useGeneratedKeys="true">
-        insert into medicine_management.tb_admin(password)
+        insert into medicine_management.admin(password)
         values (#{password})
     </insert>
 
     <insert id="insertBatch" keyProperty="account" useGeneratedKeys="true">
-        insert into medicine_management.tb_admin(password)
+        insert into medicine_management.admin(password)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.password})
@@ -57,7 +57,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="account" useGeneratedKeys="true">
-        insert into medicine_management.tb_admin(password)
+        insert into medicine_management.admin(password)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.password})
@@ -68,7 +68,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update medicine_management.tb_admin
+        update medicine_management.admin
         <set>
             <if test="password != null and password != ''">
                 password = #{password},
@@ -79,7 +79,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from medicine_management.tb_admin where account = #{account}
+        delete from medicine_management.admin where account = #{account}
     </delete>
 
 </mapper>

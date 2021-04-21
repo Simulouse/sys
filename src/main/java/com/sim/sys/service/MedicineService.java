@@ -2,6 +2,7 @@ package com.sim.sys.service;
 
 import com.sim.sys.dao.MedicineDao;
 import com.sim.sys.entity.Medicine;
+import com.sim.sys.entity.Result;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -37,7 +38,7 @@ public interface MedicineService {
      * @param medicine 实例对象
      * @return 实例对象
      */
-    Medicine insert(Medicine medicine);
+    Result insert(Medicine medicine);
 
     /**
      * 修改数据

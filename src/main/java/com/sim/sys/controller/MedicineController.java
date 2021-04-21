@@ -1,58 +1,32 @@
 package com.sim.sys.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Medicine;
-import com.sim.sys.service.impl.AdminServiceImpl;
 import com.sim.sys.service.impl.MedicineServiceImpl;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.MediaName;
+import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @author:
- * @date： 2021/4/21 15:03
- */
 @RestController
 @CrossOrigin(value = "*")
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/medicine")
+public class MedicineController {
 
-    @Autowired
-    AdminServiceImpl adminService;
-    @Autowired
-    MedicineServiceImpl medicineService;
+    @Resource
+    private MedicineServiceImpl medicineService;
 
-    /**
-     * 登陆
-     * @param account
-     * @param password
-     * @return
-     */
-    @GetMapping("/signIn")
-    @ApiOperation(value = "登录")
-    public String  verifyUserSignIn(@RequestParam String account, @RequestParam String password){
-        if(adminService.verifyUser(account,password)!=null){
-            System.out.println("登陆成功");
-            return "ok";
-        }
-        return "no";
-    }
 
     /**
      * 添加药品
      * @param medicine
      * @return
      */
-    @PostMapping("/medicine/insertMedicine")
+    @PostMapping("/insertMedicine")
     @ApiOperation(value = "添加药品")
     public String insertMedicine(@RequestBody Medicine medicine){
-        if(medicineService.insert(medicine)!=null){
-            System.out.println("添加成功");
-            return "ok";
-        }
-        return "no";
+        return JSON.toJSONString(medicineService.insert(medicine));
     }
 
     /**
@@ -60,7 +34,7 @@ public class AdminController {
      * @param medicineId
      * @return
      */
-    @PostMapping("/medicine/deleteMedicineById")
+    @PostMapping("/deleteMedicineById")
     @ApiOperation(value = "删除药品")
     public String deleteMedicineById(@RequestParam String medicineId){
         if(medicineService.deleteById(medicineId)){
@@ -75,7 +49,7 @@ public class AdminController {
      * @param medicine
      * @return
      */
-    @PostMapping("/medicine/updateMedicineById")
+    @PostMapping("/updateMedicineById")
     @ApiOperation(value = "更新药品信息")
     public Medicine updateMedicineById(@RequestBody Medicine medicine){
         if(medicineService.update(medicine)!=null){
@@ -85,16 +59,14 @@ public class AdminController {
         return null;
     }
 
-    @PostMapping("/medicine/selectAllMedicine")
+    @PostMapping("/selectAllMedicine")
     @ApiOperation(value = "查询药品信息")
-    public List<Medicine> selectAllMedicine(@RequestParam int offset,@RequestParam int limit){
+    public List<Medicine> selectAllMedicine(@RequestParam int offset, @RequestParam int limit){
         if(medicineService.queryAllByLimit(offset,limit)!=null){
             System.out.println("查询成功");
             return medicineService.queryAllByLimit(offset,limit);
         }
         return null;
     }
-
-
 
 }

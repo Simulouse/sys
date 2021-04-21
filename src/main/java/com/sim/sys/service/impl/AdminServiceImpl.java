@@ -1,9 +1,8 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.dao.PharmacistDao;
 import com.sim.sys.entity.Admin;
 import com.sim.sys.dao.AdminDao;
-import com.sim.sys.entity.Pharmacist;
+import com.sim.sys.entity.Result;
 import com.sim.sys.service.AdminService;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +21,23 @@ public class AdminServiceImpl implements AdminService {
     @Resource
     private AdminDao adminDao;
 
+
     @Override
-    public Admin verifyUser(String account, String password) {
-        System.out.println("=====");
-        return adminDao.verifyUser(account, password);
+    public Result verifyUser(Admin admin) {
+        Result result = new Result();
+
+        Admin tempAdmin = adminDao.verifyUser(admin);
+
+        if (tempAdmin ==  null) {
+            result.setResult("no");
+            return result;
+        }
+
+        result.setResult("yes");
+        result.setData(tempAdmin);
+
+        return result;
+
     }
 
     /**

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sim.sys.dao.MedicineDao">
 
-    <resultMap type="com.sim.sys.entity.Medicine" id="TbMedicineMap">
+    <resultMap type="com.sim.sys.entity.Medicine" id="medicineMap">
         <result property="medicineId" column="medicine_id" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="price" column="price" jdbcType="NUMERIC"/>
@@ -11,7 +11,7 @@
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="TbMedicineMap">
+    <select id="queryById" resultMap="medicineMap">
         select
           medicine_id, name, price, rest_nums, expired_time
         from medicine_management.tb_medicine
@@ -19,7 +19,7 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TbMedicineMap">
+    <select id="queryAllByLimit" resultMap="medicineMap">
         select
           medicine_id, name, price, rest_nums, expired_time
         from medicine_management.tb_medicine
@@ -27,7 +27,7 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TbMedicineMap">
+    <select id="queryAll" resultMap="medicineMap">
         select
         medicine_id, name, price, rest_nums, expired_time
         from medicine_management.tb_medicine

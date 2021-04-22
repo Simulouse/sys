@@ -13,7 +13,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="medicineMap">
         select
-          medicine_id, name, price, rest_nums, expired_time
+            medicine_id, name, price, rest_nums, expired_time
         from medicine_management.tb_medicine
         where medicine_id = #{medicineId}
     </select>
@@ -21,9 +21,9 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="medicineMap">
         select
-          medicine_id, name, price, rest_nums, expired_time
+            medicine_id, name, price, rest_nums, expired_time
         from medicine_management.tb_medicine
-        limit #{offset}, #{limit}
+                 limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->

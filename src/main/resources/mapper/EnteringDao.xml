@@ -2,29 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sim.sys.dao.EnteringDao">
 
-    <resultMap type="com.sim.sys.entity.Entering" id="TbEnteringMap">
+    <resultMap type="com.sim.sys.entity.Entering" id="enteringMap">
         <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
         <result property="enteringTime" column="entering_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="TbEnteringMap">
+    <select id="queryById" resultMap="enteringMap">
         select
-          order_id, entering_time
+            order_id, entering_time
         from medicine_management.tb_entering
         where order_id = #{orderId}
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TbEnteringMap">
+    <select id="queryAllByLimit" resultMap="enteringMap">
         select
-          order_id, entering_time
+            order_id, entering_time
         from medicine_management.tb_entering
-        limit #{offset}, #{limit}
+                 limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TbEnteringMap">
+    <select id="queryAll" resultMap="enteringMap">
         select
         order_id, entering_time
         from medicine_management.tb_entering

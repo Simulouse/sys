@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service("tbEnteringService")
 public class EnteringServiceImpl implements EnteringService {
+
     @Resource
     private EnteringDao enteringDao;
 

@@ -32,7 +32,6 @@ public class AdminServiceImpl implements AdminService {
             result.setResult("no");
             return result;
         }
-
         result.setResult("yes");
         result.setData(tempAdmin);
 

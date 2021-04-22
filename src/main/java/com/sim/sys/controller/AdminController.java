@@ -31,4 +31,6 @@ public class AdminController {
     public String  verifyUserSignIn(@RequestParam String account, @RequestParam String password){
         return JSON.toJSONString(adminService.verifyUser(new Admin(account, password)));
     }
+
+
 }

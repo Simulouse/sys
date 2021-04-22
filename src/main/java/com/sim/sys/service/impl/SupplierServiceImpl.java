@@ -1,5 +1,6 @@
 package com.sim.sys.service.impl;
 
+import com.sim.sys.entity.Result;
 import com.sim.sys.entity.Supplier;
 import com.sim.sys.dao.SupplierDao;
 import com.sim.sys.service.SupplierService;
@@ -49,9 +50,12 @@ public class SupplierServiceImpl implements SupplierService {
      * @return 实例对象
      */
     @Override
-    public Supplier insert(Supplier supplier) {
-        this.tbSupplierDao.insert(supplier);
-        return supplier;
+    public Result insert(Supplier supplier) {
+        Result result = new Result();
+        if (this.tbSupplierDao.queryById(supplier.getSupplierId())!=null)result.setResult("no");
+        else if (this.tbSupplierDao.insert(supplier)==0) result.setResult("no");
+        else result.setResult("yes");
+        return result;
     }
 
     /**

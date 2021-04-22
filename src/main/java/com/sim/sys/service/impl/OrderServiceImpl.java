@@ -2,6 +2,7 @@ package com.sim.sys.service.impl;
 
 import com.sim.sys.entity.Order;
 import com.sim.sys.dao.OrderDao;
+import com.sim.sys.entity.Result;
 import com.sim.sys.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +50,12 @@ public class OrderServiceImpl implements OrderService {
      * @return 实例对象
      */
     @Override
-    public Order insert(Order order) {
-        this.orderDao.insert(order);
-        return order;
+    public Result insert(Order order) {
+        Result result = new Result();
+        if (this.orderDao.queryById(order.getOrderId())!=null)result.setResult("no");
+        else if (this.orderDao.insert(order)==0) result.setResult("no");
+        else result.setResult("yes");
+        return result;
     }
 
     /**

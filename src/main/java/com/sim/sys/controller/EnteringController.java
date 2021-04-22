@@ -1,5 +1,6 @@
 package com.sim.sys.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Entering;
 import com.sim.sys.service.impl.EnteringServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -21,11 +22,7 @@ public class EnteringController {
     @PostMapping("/entering/insertEntering")
     @ApiOperation(value = "登记入库信息")
     public String insertEntering(@RequestBody Entering entering){
-        if(enteringService.insert(entering)!=null){
-            System.out.println("入库登记成功");
-            return "ok";
-        }
-        return "no";
+        return JSON.toJSONString(enteringService.insert(entering));
     }
 
     @PostMapping("/entering/selectEntering")

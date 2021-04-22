@@ -1,6 +1,7 @@
 package com.sim.sys.service;
 
 import com.sim.sys.entity.Order;
+import com.sim.sys.entity.Result;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Order insert(Order order);
+    Result insert(Order order);
 
     /**
      * 修改数据

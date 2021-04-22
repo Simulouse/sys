@@ -1,6 +1,7 @@
 package com.sim.sys.service;
 
 import com.sim.sys.entity.Entering;
+import com.sim.sys.entity.Result;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public interface EnteringService {
      * @param entering 实例对象
      * @return 实例对象
      */
-    Entering insert(Entering entering);
+    Result insert(Entering entering);
 
     /**
      * 修改数据

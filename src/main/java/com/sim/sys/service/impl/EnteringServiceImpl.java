@@ -2,6 +2,7 @@ package com.sim.sys.service.impl;
 
 import com.sim.sys.entity.Entering;
 import com.sim.sys.dao.EnteringDao;
+import com.sim.sys.entity.Result;
 import com.sim.sys.service.EnteringService;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +51,12 @@ public class EnteringServiceImpl implements EnteringService {
      * @return 实例对象
      */
     @Override
-    public Entering insert(Entering entering) {
-        this.enteringDao.insert(entering);
-        return entering;
+    public Result insert(Entering entering) {
+        Result result = new Result();
+        if(this.enteringDao.queryById(entering.getOrderId())!=null) result.setResult("no");
+        else if(this.enteringDao.insert(entering)==0) result.setResult("no");
+        else result.setResult("yes");
+        return result;
     }
 
     /**

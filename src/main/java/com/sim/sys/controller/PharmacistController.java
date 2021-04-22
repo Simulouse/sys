@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @since 2021-04-21 10:23:54
  */
 @RestController
-@RequestMapping("pharmacist")
+@RequestMapping("/pharmacist")
 public class PharmacistController {
     /**
      * 服务对象

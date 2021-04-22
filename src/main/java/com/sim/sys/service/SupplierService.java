@@ -1,5 +1,6 @@
 package com.sim.sys.service;
 
+import com.sim.sys.entity.Result;
 import com.sim.sys.entity.Supplier;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public interface SupplierService {
      * @param supplier 实例对象
      * @return 实例对象
      */
-    Supplier insert(Supplier supplier);
+    Result insert(Supplier supplier);
 
     /**
      * 修改数据

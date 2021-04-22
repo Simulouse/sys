@@ -59,14 +59,31 @@ public class MedicineController {
         return null;
     }
 
-    @PostMapping("/selectAllMedicine")
-    @ApiOperation(value = "查询药品信息")
-    public List<Medicine> selectAllMedicine(@RequestParam int offset, @RequestParam int limit){
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("/selectOne")
+    @ApiOperation(value = "查询单条订单")
+    public Medicine selectOne(String id){
+        return this.medicineService.queryById(id);
+    }
+
+    /**
+     * 查询分页药品信息
+     * @param offset
+     * @param limit
+     * @return
+     */
+    @PostMapping("/selectLimitMedicine")
+    @ApiOperation(value = "查询分页药品信息")
+    public List<Medicine> selectLimitMedicine(@RequestParam int offset, @RequestParam int limit){
         if(medicineService.queryAllByLimit(offset,limit)!=null){
             System.out.println("查询成功");
             return medicineService.queryAllByLimit(offset,limit);
         }
         return null;
     }
-
 }

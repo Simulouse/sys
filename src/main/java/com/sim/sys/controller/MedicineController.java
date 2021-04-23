@@ -59,6 +59,13 @@ public class MedicineController {
         return null;
     }
 
+
+    @GetMapping("/selectMedicineById")
+    @ApiOperation(value = "查询药品数量")
+    public int selectMedicineNum(@RequestParam String medicineId){
+        return medicineService.queryNumById(medicineId);
+    }
+
     /**
      * 通过主键查询单条数据
      *

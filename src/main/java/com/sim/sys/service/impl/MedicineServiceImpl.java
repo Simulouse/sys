@@ -83,4 +83,15 @@ public class MedicineServiceImpl implements MedicineService {
         return this.medicineDao.deleteById(medicineId) > 0;
     }
 
+    /**
+     * 通过主键查询数量
+     * @param medicineId 主键
+     * @return 是否成功
+     */
+    @Override
+    public int queryNumById(String medicineId) {
+        return medicineDao.queryNumById(medicineId);
+    }
+
+
 }

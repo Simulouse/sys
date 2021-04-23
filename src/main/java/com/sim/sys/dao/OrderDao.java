@@ -72,6 +72,13 @@ public interface OrderDao {
     int update(Order order);
 
     /**
+     * 根据Id，修改订单状态
+     * @param orderId
+     * @return
+     */
+    int updateOrderStateById(String orderId,int state);
+
+    /**
      * 通过主键删除数据
      *
      * @param orderId 主键

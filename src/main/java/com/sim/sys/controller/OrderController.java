@@ -36,6 +36,7 @@ public class OrderController {
      * @param order
      * @return
      */
+
     @PostMapping("/insertOrder")
     @ApiOperation(value = "添加订单")
     public String insertMedicine(@RequestBody Order  order){
@@ -79,12 +80,27 @@ public class OrderController {
      * @param order
      * @return
      */
-    @PostMapping("/updateOrderById")
+    @PostMapping("/updateOrder")
     @ApiOperation(value = "更新订单信息")
-    public Order updateOrderById(@RequestBody Order order){
+    public Order updateOrder(@RequestBody Order order){
         if(orderService.update(order)!=null){
             System.out.println("修改成功");
             return orderService.update(order);
+        }
+        return null;
+    }
+
+    /**
+     * 修改订单状态
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/updateOrderStateById")
+    @ApiOperation(value = "更新订单状态信息")
+    public Order updateOrderStateById(@RequestParam String orderId,@RequestParam int state){
+        if(orderService.updateOrderStateById(orderId,state)!=null){
+            System.out.println("修改成功");
+            return orderService.updateOrderStateById(orderId,state);
         }
         return null;
     }

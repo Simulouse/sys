@@ -17,7 +17,11 @@
         from medicine_management.tb_medicine
         where medicine_id = #{medicineId}
     </select>
-
+    <select id="queryNumById">
+        select rest_nums
+        from medicine_management.tb_medicine
+        where medicine_id = #{medicineId}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="medicineMap">
         select

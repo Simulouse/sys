@@ -56,4 +56,11 @@ public interface MedicineService {
      */
     boolean deleteById(String medicineId);
 
+    /**
+     * 查询药品数量
+     * @param medicineId
+     * @return
+     */
+    public int queryNumById(String medicineId);
+
 }

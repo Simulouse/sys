@@ -46,6 +46,8 @@ public interface OrderService {
      */
     Order update(Order order);
 
+    Order updateOrderStateById(String orderId,int state);
+
     /**
      * 通过主键删除数据
      *

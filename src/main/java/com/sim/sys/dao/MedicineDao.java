@@ -79,5 +79,10 @@ public interface MedicineDao {
      */
     int deleteById(String medicineId);
 
+    /**
+     * 通过主键查询药品数量
+     * @return
+     */
+    int queryNumById(String medicineId);
 }
 

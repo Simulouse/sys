@@ -70,6 +70,12 @@ public class OrderServiceImpl implements OrderService {
         return this.queryById(order.getOrderId());
     }
 
+    @Override
+    public Order updateOrderStateById(String orderId,int state) {
+        this.orderDao.updateOrderStateById(orderId,state);
+        return this.queryById(orderId);
+    }
+
     /**
      * 通过主键删除数据
      *

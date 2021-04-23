@@ -19,13 +19,13 @@ public class EnteringController {
     @Resource
     private EnteringServiceImpl enteringService;
 
-    @PostMapping("/entering/insertEntering")
+    @PostMapping("/insertEntering")
     @ApiOperation(value = "登记入库信息")
     public String insertEntering(@RequestBody Entering entering){
         return JSON.toJSONString(enteringService.insert(entering));
     }
 
-    @PostMapping("/entering/selectEntering")
+    @PostMapping("/selectEntering")
     @ApiOperation(value = "查询入库信息")
     public List<Entering> selectLimitEntering(@RequestParam int offset, @RequestParam int limit){
         if(enteringService.queryAllByLimit(offset,limit)!=null){
@@ -35,7 +35,7 @@ public class EnteringController {
         return null;
     }
 
-    @PostMapping("/entering/updateEnteringById")
+    @PostMapping("/updateEnteringById")
     @ApiOperation(value = "更新入库信息")
     public Entering updateEnteringById(@RequestBody Entering entering){
         if(enteringService.update(entering)!=null){

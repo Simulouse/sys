@@ -2,24 +2,35 @@ package com.sim.sys.controller;
 
 import com.sim.sys.entity.Pharmacist;
 import com.sim.sys.service.PharmacistService;
+import com.sim.sys.service.impl.PharmacistServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * (TbPharmacist)表控制层
- *
- * @author makejava
- * @since 2021-04-21 10:23:54
- */
 @RestController
 @RequestMapping("/pharmacist")
 public class PharmacistController {
+
     /**
      * 服务对象
      */
     @Resource
     private PharmacistService pharmacistService;
+
+    /**
+     * 登录
+     * @param pharmacistId
+     * @param password
+     * @return
+     */
+    @GetMapping("/signIn")
+    public String  verifyUserSignIn(@RequestParam String pharmacistId,@RequestParam String password){
+        if(pharmacistService.verifyUser(pharmacistId,password)!=null){
+            System.out.println("登陆成功");
+            return "ok";
+        }
+        return "no";
+    }
 
     /**
      * 通过主键查询单条数据
@@ -31,5 +42,15 @@ public class PharmacistController {
     public Pharmacist selectOne(String id) {
         return this.pharmacistService.queryById(id);
     }
+
+    /**
+     * 填写药单
+     * @return
+     */
+    @GetMapping("/writePrescription")
+    public String writePrescription(){
+        return "/prescription_form";
+    }
+
 
 }

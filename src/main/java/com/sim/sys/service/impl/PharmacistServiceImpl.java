@@ -2,6 +2,7 @@ package com.sim.sys.service.impl;
 
 import com.sim.sys.entity.Pharmacist;
 import com.sim.sys.dao.PharmacistDao;
+import com.sim.sys.entity.Result;
 import com.sim.sys.service.PharmacistService;
 import org.springframework.stereotype.Service;
 
@@ -56,9 +57,13 @@ public class PharmacistServiceImpl implements PharmacistService {
      * @return 实例对象
      */
     @Override
-    public Pharmacist insert(Pharmacist pharmacist) {
-        this.pharmacistDao.insert(pharmacist);
-        return pharmacist;
+    public Result insert(Pharmacist pharmacist) {
+        Result result = new Result();
+        if (this.pharmacistDao.queryById(pharmacist.getPharmacistId()) != null) result.setResult("no");
+        else if ( this.pharmacistDao.insert(pharmacist) == 0) result.setResult("no");
+        else result.setResult("yes");
+
+        return result;
     }
 
     /**

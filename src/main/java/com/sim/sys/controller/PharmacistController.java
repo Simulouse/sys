@@ -1,8 +1,10 @@
 package com.sim.sys.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Pharmacist;
 import com.sim.sys.service.PharmacistService;
 import com.sim.sys.service.impl.PharmacistServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -41,6 +43,12 @@ public class PharmacistController {
     @GetMapping("selectOne")
     public Pharmacist selectOne(String id) {
         return this.pharmacistService.queryById(id);
+    }
+
+    @PostMapping("/insertPharmacist")
+    @ApiOperation(value = "添加用户")
+    public String insertPharmacist(@RequestBody Pharmacist pharmacist){
+        return JSON.toJSONString(pharmacistService.insert(pharmacist));
     }
 
     /**

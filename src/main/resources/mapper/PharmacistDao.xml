@@ -51,9 +51,11 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="pharmacistId" useGeneratedKeys="true">
-        insert into medicine_management.tb_pharmacist(password, name)
-        values (#{password}, #{name})
+        insert into medicine_management.tb_pharmacist(pharmacist_id,password, name)
+        values (#{pharmacistId},#{password}, #{name})
     </insert>
+
+
 
     <insert id="insertBatch" keyProperty="pharmacistId" useGeneratedKeys="true">
         insert into medicine_management.tb_pharmacist(password, name)

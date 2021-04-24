@@ -2,6 +2,8 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Entering;
+import com.sim.sys.entity.Medicine;
+import com.sim.sys.entity.Pharmacist;
 import com.sim.sys.entity.Prescription;
 import com.sim.sys.service.PrescriptionService;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +36,7 @@ public class PrescriptionController {
     public Prescription selectOne(String id) {
         return this.prescriptionService.queryById(id);
     }
+
 
     @PostMapping("/insertEntering")
     @ApiOperation(value = "登记药单")

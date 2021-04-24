@@ -1,6 +1,7 @@
 package com.sim.sys.service;
 
 import com.sim.sys.entity.Pharmacist;
+import com.sim.sys.entity.Result;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public interface PharmacistService {
      * @param pharmacist 实例对象
      * @return 实例对象
      */
-    Pharmacist insert(Pharmacist pharmacist);
+    Result insert(Pharmacist pharmacist);
 
     /**
      * 修改数据

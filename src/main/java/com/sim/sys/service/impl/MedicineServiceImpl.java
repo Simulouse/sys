@@ -43,6 +43,11 @@ public class MedicineServiceImpl implements MedicineService {
         return this.medicineDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<Medicine> queryExpiredMedicine() {
+        return medicineDao.queryExpiredMedicine();
+    }
+
     /**
      * 新增数据
      *

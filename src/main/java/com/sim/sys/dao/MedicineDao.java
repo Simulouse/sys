@@ -39,6 +39,7 @@ public interface MedicineDao {
      */
     List<Medicine> queryAll(Medicine medicine);
 
+    List<Medicine> queryExpiredMedicine();
     /**
      * 新增数据
      *

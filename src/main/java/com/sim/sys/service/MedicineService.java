@@ -32,6 +32,8 @@ public interface MedicineService {
      */
     List<Medicine> queryAllByLimit(int offset, int limit);
 
+    List<Medicine> queryExpiredMedicine();
+
     /**
      * 新增数据
      *
@@ -62,5 +64,7 @@ public interface MedicineService {
      * @return
      */
     public int queryNumById(String medicineId);
+
+
 
 }

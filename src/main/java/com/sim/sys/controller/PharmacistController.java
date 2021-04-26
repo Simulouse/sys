@@ -59,6 +59,4 @@ public class PharmacistController {
     public String writePrescription(){
         return "/prescription_form";
     }
-
-
 }

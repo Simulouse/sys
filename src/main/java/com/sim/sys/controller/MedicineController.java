@@ -66,6 +66,12 @@ public class MedicineController {
         return medicineService.queryNumById(medicineId);
     }
 
+    @PostMapping("/queryExpiredMedicine")
+    @ApiOperation(value = "查询过期药品")
+    public List<Medicine> queryExpiredMedicine(){
+        return medicineService.queryExpiredMedicine();
+    }
+
     /**
      * 通过主键查询单条数据
      *

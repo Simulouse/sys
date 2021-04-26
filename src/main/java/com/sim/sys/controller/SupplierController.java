@@ -1,9 +1,8 @@
 package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sim.sys.entity.Medicine;
 import com.sim.sys.entity.Supplier;
-import com.sim.sys.service.SupplierService;
+import com.sim.sys.service.impl.SupplierServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class SupplierController {
      * 服务对象
      */
     @Resource
-    private SupplierService supplierService;
+    private SupplierServiceImpl supplierService;
 
     /**
      * 通过主键查询单条数据

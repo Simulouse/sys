@@ -32,7 +32,7 @@
 
     <select id="queryExpiredMedicine" resultMap="medicineMap">
         select medicine_id, name, price, rest_nums, expired_time
-        from medicine_management.tb_medicine where  DATEDIFF(expired_time,now())<0
+        from medicine_management.tb_medicine where DATEDIFF(expired_time,now()) &lt; 0
     </select>
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="medicineMap">

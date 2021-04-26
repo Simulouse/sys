@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Order;
-import com.sim.sys.service.OrderService;
+import com.sim.sys.service.impl.OrderServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +17,7 @@ public class OrderController {
      * 服务对象
      */
     @Resource
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     /**
      * 通过主键查询单条数据

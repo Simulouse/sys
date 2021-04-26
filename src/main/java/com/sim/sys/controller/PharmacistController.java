@@ -2,7 +2,6 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Pharmacist;
-import com.sim.sys.service.PharmacistService;
 import com.sim.sys.service.impl.PharmacistServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ public class PharmacistController {
      * 服务对象
      */
     @Resource
-    private PharmacistService pharmacistService;
+    private PharmacistServiceImpl pharmacistService;
 
     /**
      * 登录
@@ -26,6 +25,7 @@ public class PharmacistController {
      * @return
      */
     @GetMapping("/signIn")
+    @ApiOperation(value = "登录")
     public String  verifyUserSignIn(@RequestParam String pharmacistId,@RequestParam String password){
         if(pharmacistService.verifyUser(pharmacistId,password)!=null){
             System.out.println("登陆成功");
@@ -56,6 +56,7 @@ public class PharmacistController {
      * @return
      */
     @GetMapping("/writePrescription")
+    @ApiOperation(value = "填写药单")
     public String writePrescription(){
         return "/prescription_form";
     }

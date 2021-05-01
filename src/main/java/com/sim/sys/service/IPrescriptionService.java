@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-04-23 09:33:33
  */
-public interface PrescriptionService {
+public interface IPrescriptionService {
 
     /**
      * 通过ID查询单条数据

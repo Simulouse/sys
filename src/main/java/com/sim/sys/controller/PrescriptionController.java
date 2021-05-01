@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Prescription;
-import com.sim.sys.service.impl.PrescriptionServiceImpl;
+import com.sim.sys.service.impl.PrescriptionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +21,7 @@ public class PrescriptionController {
      * 服务对象
      */
     @Resource
-    private PrescriptionServiceImpl prescriptionService;
+    private PrescriptionService prescriptionService;
 
     /**
      * 通过主键查询单条数据

@@ -3,7 +3,6 @@ package com.sim.sys.service.impl;
 import com.sim.sys.entity.Admin;
 import com.sim.sys.dao.AdminDao;
 import com.sim.sys.entity.Result;
-import com.sim.sys.service.AdminService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +15,7 @@ import java.util.List;
  * @since 2021-04-20 10:11:49
  */
 @Service("tbAdminService")
-public class AdminServiceImpl implements AdminService {
+public class AdminService implements com.sim.sys.service.IAdminService {
 
     @Resource
     private AdminDao adminDao;

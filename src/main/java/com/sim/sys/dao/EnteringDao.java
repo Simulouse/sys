@@ -5,20 +5,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * (TbEntering)表数据库访问层
- *
- * @author makejava
- * @since 2021-04-20 09:44:44
- */
+
 public interface EnteringDao {
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param orderId 主键
-     * @return 实例对象
-     */
     Entering queryById(String orderId);
 
     /**

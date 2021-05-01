@@ -8,14 +8,14 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 09:46:33
  */
-public class Pharmacist extends User implements Serializable {
+public class Pharmacist implements Serializable {
     private static final long serialVersionUID = -14544306066284092L;
 
     private String pharmacistId;
 
     private String password;
 
-    private String name;
+    private String pharmacistName;
 
 
     public String getPharmacistId() {
@@ -34,12 +34,12 @@ public class Pharmacist extends User implements Serializable {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getPharmacistName() {
+        return pharmacistName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPharmacistName(String pharmacistName) {
+        this.pharmacistName = pharmacistName;
     }
 
 }

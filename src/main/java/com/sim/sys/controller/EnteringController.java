@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Entering;
-import com.sim.sys.service.impl.EnteringServiceImpl;
+import com.sim.sys.service.impl.EnteringService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/entering")
 public class EnteringController {
     @Resource
-    private EnteringServiceImpl enteringService;
+    private EnteringService enteringService;
 
     @PostMapping("/insertEntering")
     @ApiOperation(value = "登记入库信息")

@@ -3,7 +3,6 @@ package com.sim.sys.service.impl;
 import com.sim.sys.entity.Prescription;
 import com.sim.sys.dao.PrescriptionDao;
 import com.sim.sys.entity.Result;
-import com.sim.sys.service.PrescriptionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +15,7 @@ import java.util.List;
  * @since 2021-04-23 09:33:33
  */
 @Service("prescriptionService")
-public class PrescriptionServiceImpl implements PrescriptionService {
+public class PrescriptionService implements com.sim.sys.service.IPrescriptionService {
     @Resource
     private PrescriptionDao prescriptionDao;
 

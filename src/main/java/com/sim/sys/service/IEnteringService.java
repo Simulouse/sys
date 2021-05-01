@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-04-20 09:44:47
  */
-public interface EnteringService {
+public interface IEnteringService {
 
     /**
      * 通过ID查询单条数据

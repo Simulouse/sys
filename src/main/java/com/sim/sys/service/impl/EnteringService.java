@@ -3,7 +3,6 @@ package com.sim.sys.service.impl;
 import com.sim.sys.entity.Entering;
 import com.sim.sys.dao.EnteringDao;
 import com.sim.sys.entity.Result;
-import com.sim.sys.service.EnteringService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,8 +14,8 @@ import java.util.List;
  * @author makejava
  * @since 2021-04-20 09:44:49
  */
-@Service("tbEnteringService")
-public class EnteringServiceImpl implements EnteringService {
+@Service("enteringService")
+public class EnteringService implements com.sim.sys.service.IEnteringService {
 
     @Resource
     private EnteringDao enteringDao;

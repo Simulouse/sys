@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Medicine;
-import com.sim.sys.service.impl.MedicineServiceImpl;
+import com.sim.sys.service.impl.MedicineService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class MedicineController {
 
     @Resource
-    private MedicineServiceImpl medicineService;
+    private MedicineService medicineService;
 
 
     /**

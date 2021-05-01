@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sim.sys.dao.DeliveryDao">
+
+    <resultMap id="deliveryMap" type="com.sim.sys.entity.Delivery" >
+
+        <result property="deliveryId" column="delivery_id" jdbcType="VARCHAR"/>
+        <result property="deliveryTime" column="delivery_time" jdbcType="TIMESTAMP"/>
+
+        <association property="pharmacist" javaType="com.sim.sys.entity.Pharmacist">
+            <result property="pharmacistId" column="pharmacist_id"/>
+            <result property="pharmacistName" column="pharmacist_name"/>
+        </association>
+
+
+        <collection property="records" ofType="com.sim.sys.entity.DeliveryMedicine">
+            <result property="medicineId" column="medicine_id"/>
+            <result property="medicineName" column="medicine_name"/>
+            <result property="nums" column="nums"/>
+        </collection>
+
+
+    </resultMap>
+
+
+    <select id="findAllDeliveryByFilter" resultMap="deliveryMap">
+        select
+            p.delivery_id, p.delivery_time,
+            dm.medicine_id, dm.nums,
+            m.medicine_name,
+            p.pharmacist_id, p.pharmacist_name,
+        from delivery  d
+                 left join delivery_medicine  dm on dm.delivery_id= d.delivery_id
+                 left join medicine  m on m.medicine_id = dm.medicine_id
+                 left join pharmacist  p on p.pharmacist_id = d.pharmacist_id
+        <where>
+            <if test="deliveryId != null and deliveryId != ''">
+                and p.delivery_id = #{deliveryId}
+            </if>
+            <if test="deliveryTime != null and deliveryTime != ''">
+                and p.delivery_time = #{deliveryTime}
+            </if>
+
+            <if test="pharmacist != null">
+                <if test="pharmacist.pharmacistId != null and pharmacist.pharmacistId != ''">
+                    and p.pharmacist_id = #{pharmacist.pharmacistId}
+                </if>
+                <if test="pharmacist.pharmacistName != null and pharmacist.pharmacistName != ''">
+                    and p.pharmacist_name = #{pharmacist.pharmacistName}
+                </if>
+            </if>
+
+            <if test="filterMedicine != null">
+                <if test="filterMedicine.medicineId != null and filterMedicine.medicineId != ''">
+                    and dm.medicine_id = #{filterMedicine.medicineId}
+                </if>
+
+                <if test="filterMedicine.medicineName != null and filterMedicine.medicineName != ''">
+                    and m.medicine_name = #{filterMedicine.medicineName}
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+    <select id="findDeliveryById" resultMap="deliveryMap">
+        select
+        p.delivery_id, p.delivery_time,
+        dm.medicine_id, dm.nums,
+        m.medicine_name,
+        p.pharmacist_id, p.pharmacist_name,
+        from delivery  d
+        left join delivery_medicine  dm on dm.delivery_id= d.delivery_id
+        left join medicine  m on m.medicine_id = dm.medicine_id
+        left join pharmacist  p on p.pharmacist_id = d.pharmacist_id
+        where p.delivery_id = #{deliveryId}
+    </select>
+
+    <insert id="insertDelivery" keyProperty="deliveryId">
+        insert into delivery (delivery_id, pharmacist_id, deliveryTime)
+        values
+        (#{deliveryId}, #{pharmacist.pharmacistId}, #{deliveryTime})
+    </insert>
+
+
+</mapper>
+

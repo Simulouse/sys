@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sim.sys.dao.StorageDao">
+
+    <resultMap type="com.sim.sys.entity.Storage" id="storageMap">
+        <result property="storageId" column="storage_id" jdbcType="VARCHAR"/>
+        <result property="storageName" column="storage_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="findAllStorageByFilter" resultMap="storageMap">
+        select
+        s.storage_id, s.price, s.rest_nums, s.expired_time,
+        m.medicine_id, m.medicine_name
+        from storage s
+            left join medicine m on m.medicine_id = s.medicine_id
+        <where>
+            <if test="storageId != null and storageId != ''">
+                and s.storage_id = #{storageId}
+            </if>
+            <if test="price != null and storageName != ''">
+                and s.storage_name = #{storageName}
+            </if>
+            <if test="restNums != null and restNums != ''">
+                and s.rest_nums = #{restNums}
+            </if>
+            <if test="expiredTime != null and expiredTime != ''">
+                and s.expired_time = #{expiredTime}
+            </if>
+            <if test="medicine_id != null and medicine_id != ''">
+                and medicine_id = #{medicineId}
+            </if>
+            <if test="orderId != null and orderId != ''">
+                and s.order_id = #{orderId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findStorageByOrderId" resultMap="storageMap">
+        select
+            s.storage_id, s.price, s.rest_nums, s.expired_time,
+            m.medicine_id, m.medicine_name
+        from storage s
+                 left join medicine m on m.medicine_id = s.medicine_id
+        where order_id = #{orderId}
+    </select>
+
+    <insert id="insertStorage" keyProperty="storageId">
+        insert into storage(storage_id, price, rest_nums, expired_time, medicine_id, order_id)
+        values (#{storageId}, #{price}, #{restNums}, #{expiredTiem}, #{medicineId}, #{order_id})
+    </insert>
+
+    <update id="updateStorageById">
+        update storage
+        set rest_nums = #{restNums}
+        where storage_id = #{storageId}
+    </update>
+
+    <delete id="deleteStorageById">
+        delete from storage where storage_id = #{storageId}
+    </delete>
+
+</mapper>
+

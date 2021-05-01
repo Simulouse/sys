@@ -5,93 +5,54 @@
     <resultMap id="pharmacistMap" type="com.sim.sys.entity.Pharmacist">
         <result property="pharmacistId" column="pharmacist_id" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="pharmacistName" column="pharmacist_name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="verifyUser" resultMap="pharmacistMap">
-        select * from medicine_management.tb_pharmacist where pharmacist_id=#{pharmacistId} and password=#{password}
-    </select>
-
-    <!--查询单个-->
-    <select id="queryById" resultMap="pharmacistMap
-">
+    <select id="findPharmacistById" resultMap="pharmacistMap">
         select
-          pharmacist_id, password, name
-        from medicine_management.tb_pharmacist
+          p.pharmacist_id, p.pharmacistName, p.password
+        from pharmacist p
         where pharmacist_id = #{pharmacistId}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="pharmacistMap
-">
+    <select id="findAllByFilter" resultMap="pharmacistMap">
         select
-          pharmacist_id, password, name
-        from medicine_management.tb_pharmacist
-        limit #{offset}, #{limit}
-    </select>
-
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="pharmacistMap
-">
-        select
-        pharmacist_id, password, name
-        from medicine_management.tb_pharmacist
+        pharmacist_id, pharmacistName, password
+        from pharmacist p
         <where>
             <if test="pharmacistId != null and pharmacistId != ''">
                 and pharmacist_id = #{pharmacistId}
             </if>
+            <if test="pharmacistName != null and pharmacistName != ''">
+                and pharmacist_name = #{pharmacistName}
+            </if>
             <if test="password != null and password != ''">
                 and password = #{password}
             </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
+
         </where>
     </select>
 
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="pharmacistId" useGeneratedKeys="true">
-        insert into medicine_management.tb_pharmacist(pharmacist_id,password, name)
-        values (#{pharmacistId},#{password}, #{name})
+    <insert id="insertPharmacist" keyProperty="pharmacistId" useGeneratedKeys="true">
+        insert into pharmacist(pharmacist_id, pharmacist_name, password)
+        values (#{pharmacistId}, #{pharmacistName}, #{password})
     </insert>
 
-
-
-    <insert id="insertBatch" keyProperty="pharmacistId" useGeneratedKeys="true">
-        insert into medicine_management.tb_pharmacist(password, name)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.password}, #{entity.name})
-        </foreach>
-    </insert>
-
-    <insert id="insertOrUpdateBatch" keyProperty="pharmacistId" useGeneratedKeys="true">
-        insert into medicine_management.tb_pharmacist(password, name)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.password}, #{entity.name})
-        </foreach>
-        on duplicate key update
-        password = values(password) , name = values(name)
-    </insert>
-
-    <!--通过主键修改数据-->
-    <update id="update">
-        update medicine_management.tb_pharmacist
+    <update id="updatePharmacist">
+        update pharmacist
         <set>
             <if test="password != null and password != ''">
                 password = #{password},
             </if>
-            <if test="name != null and name != ''">
-                name = #{name},
+            <if test="pharmacistName != null and pharmacistName != ''">
+                pharmacist_name = #{pharmacistName},
             </if>
         </set>
         where pharmacist_id = #{pharmacistId}
     </update>
 
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from medicine_management.tb_pharmacist where pharmacist_id = #{pharmacistId}
+    <delete id="deletePharmacistById">
+        delete from pharmacist where pharmacist_id = #{pharmacistId}
     </delete>
 
 </mapper>

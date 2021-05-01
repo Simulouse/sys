@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Pharmacist;
-import com.sim.sys.service.impl.PharmacistServiceImpl;
+import com.sim.sys.service.impl.PharmacistService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,44 +12,40 @@ import javax.annotation.Resource;
 @RequestMapping("/pharmacist")
 public class PharmacistController {
 
-    /**
-     * 服务对象
-     */
     @Resource
-    private PharmacistServiceImpl pharmacistService;
+    private PharmacistService pharmacistService;
 
-    /**
-     * 登录
-     * @param pharmacistId
-     * @param password
-     * @return
-     */
+    @PostMapping("/insert")
+    @ApiOperation(value = "插入药师")
+    public String insert(@RequestBody Pharmacist pharmacist) {
+        return JSON.toJSONString(pharmacistService.insertPharmacist(pharmacist));
+    }
+
+    @DeleteMapping("/delete")
+    @ApiOperation(value = "删除药师")
+    public String delete(@RequestParam String pharmacistId) {
+        return JSON.toJSONString(pharmacistService.deletePharmacistById(pharmacistId));
+    }
+
+    @PostMapping("/update")
+    @ApiOperation(value = "更新药师")
+    public String update(@RequestBody Pharmacist pharmacist) {
+        return JSON.toJSONString(pharmacistService.updatePharmacist(pharmacist));
+    }
+
     @GetMapping("/signIn")
-    @ApiOperation(value = "登录")
-    public String  verifyUserSignIn(@RequestParam String pharmacistId,@RequestParam String password){
-        if(pharmacistService.verifyUser(pharmacistId,password)!=null){
-            System.out.println("登陆成功");
-            return "ok";
-        }
-        return "no";
+    @ApiOperation(value = "药师登录")
+    public String SignIn(@RequestParam String pharmacistId, @RequestParam String password){
+        return JSON.toJSONString(pharmacistService.verifyUser(pharmacistId, password));
     }
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Pharmacist selectOne(String id) {
-        return this.pharmacistService.queryById(id);
+    @PostMapping("/findAll")
+    @ApiOperation(value = "按条件查找")
+    public String findAll(@RequestBody Pharmacist pharmacist) {
+        return JSON.toJSONString(pharmacistService.findAllByFilter(pharmacist));
     }
 
-    @PostMapping("/insertPharmacist")
-    @ApiOperation(value = "添加用户")
-    public String insertPharmacist(@RequestBody Pharmacist pharmacist){
-        return JSON.toJSONString(pharmacistService.insert(pharmacist));
-    }
+
 
     /**
      * 填写药单

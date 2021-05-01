@@ -1,10 +1,8 @@
 package com.sim.sys.service;
 
-import com.sim.sys.dao.MedicineDao;
 import com.sim.sys.entity.Medicine;
 import com.sim.sys.entity.Result;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-04-20 09:46:00
  */
-public interface MedicineService {
+public interface IMedicineService {
 
     /**
      * 通过ID查询单条数据

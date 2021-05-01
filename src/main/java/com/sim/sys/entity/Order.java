@@ -1,7 +1,7 @@
 package com.sim.sys.entity;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (TbOrder)实体类
@@ -14,17 +14,17 @@ public class Order implements Serializable {
 
     private String orderId;
 
-    private String pharmacistId;
+    private Pharmacist pharmacist;
 
-    private String supplierId;
+    private Supplier supplier;
 
-    private String medicineId;
+    private List<OrderMedicine> records;
 
-    private Integer nums;
-
-    private Date time;
+    private String time;
 
     private Integer state;
+
+    private MedicineTest filterMedicine;
 
 
     public String getOrderId() {
@@ -35,43 +35,11 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
-    public String getPharmacistId() {
-        return pharmacistId;
-    }
-
-    public void setPharmacistId(String pharmacistId) {
-        this.pharmacistId = pharmacistId;
-    }
-
-    public String getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public String getMedicineId() {
-        return medicineId;
-    }
-
-    public void setMedicineId(String medicineId) {
-        this.medicineId = medicineId;
-    }
-
-    public Integer getNums() {
-        return nums;
-    }
-
-    public void setNums(Integer nums) {
-        this.nums = nums;
-    }
-
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -83,4 +51,35 @@ public class Order implements Serializable {
         this.state = state;
     }
 
+    public Pharmacist getPharmacist() {
+        return pharmacist;
+    }
+
+    public void setPharmacist(Pharmacist pharmacist) {
+        this.pharmacist = pharmacist;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public List<OrderMedicine> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<OrderMedicine> records) {
+        this.records = records;
+    }
+
+    public MedicineTest getFilterMedicine() {
+        return filterMedicine;
+    }
+
+    public void setFilterMedicine(MedicineTest filterMedicine) {
+        this.filterMedicine = filterMedicine;
+    }
 }

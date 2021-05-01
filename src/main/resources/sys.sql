@@ -1,40 +1,95 @@
 create database medicine_management;
-use medidcine_management;
-DROP TABLE IF EXISTS tb_order;
-create table IF NOT EXISTS tb_order (
-    order_id varchar(255) NOT NULL primary key ,
-    pharmacist_id varchar(255),
-    supplier_id varchar(255),
-    medicine_id varchar(255),
-    nums int,
-    time timestamp,
-    state int
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+use medicine_management;
+create table admin
+(
+    account  varchar(15) not null
+        primary key,
+    password varchar(30) not null,
+    name     varchar(10) not null
+)
+    charset = utf8;
 
-DROP TABLE IF EXISTS tb_entering;
-create table IF NOT EXISTS tb_entering(
-    order_id  varchar(255) NOT NULL primary key ,
-    entering_time timestamp
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table entering
+(
+    order_id      varchar(255)                        not null
+        primary key,
+    entering_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+)
+    charset = utf8;
 
-DROP TABLE IF EXISTS tb_pharmacist;
-create table IF NOT EXISTS tb_pharmacist(
-    pharmacist_id varchar(255) NOT NULL primary key,
-    password varchar(255),
-    name varchar(255)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table medicine
+(
+    medicine_id   varchar(255) null,
+    medicine_name varchar(100) null,
+    constraint medicine_medicine_id_uindex
+        unique (medicine_id)
+)
+    charset = utf8;
 
-DROP TABLE IF EXISTS tb_supplier;
-create table IF NOT EXISTS tb_supplier(
-    supplier_id varchar(255)  NOT NULL primary key,
-    name varchar(255)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table order_medicine
+(
+    order_id    varchar(255) not null,
+    medicine_id varchar(255) not null,
+    nums        int          null,
+    constraint order_medicine_pk
+        unique (order_id, medicine_id)
+)
+    charset = utf8;
 
-DROP TABLE IF EXISTS tb_medicine;
-create table IF NOT EXISTS tb_medicine(
-    medicine_id varchar(255) primary key,
-    name varchar(255),
-    price decimal(5,2),
-    rest_nums int,
-    expired_time timestamp
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table storage
+(
+    storage_id   varchar(255)                        not null
+        primary key,
+    price        decimal(5, 2)                       null,
+    rest_nums    int                                 null,
+    expired_time timestamp not null,
+    medicine_id  varchar(255)                        null,
+    order_id     varchar(255)                        null
+)
+    charset = utf8;
+
+create table tb_order
+(
+    order_id      varchar(255)                        not null
+        primary key,
+    pharmacist_id varchar(255)                        null,
+    supplier_id   varchar(255)                        null,
+    time          timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    state         int                                 null
+)
+    charset = utf8;
+
+create table pharmacist
+(
+    pharmacist_id   varchar(255) not null
+        primary key,
+    password        varchar(255) null,
+    pharmacist_name varchar(255) null
+)
+    charset = utf8;
+
+create table supplier
+(
+    supplier_id   varchar(255) not null
+        primary key,
+    supplier_name varchar(255) not null
+)
+    charset = utf8;
+
+create table delivery
+(
+    delivery_id varchar(255) not null,
+    pharmacist_id varchar(255) not null,
+    delivery_time timestamp not null
+)
+    charset = utf8;
+
+create table delivery_medicine
+(
+    delivery_id varchar(255) not null,
+    medicine_id varchar(255) not null,
+    nums int not null,
+    constraint delivery_medicine_pk
+        unique (delivery_id, medicine_id)
+)
+    charset = utf8;

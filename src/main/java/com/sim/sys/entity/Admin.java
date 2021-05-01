@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-04-20 10:11:49
  */
-public class Admin extends User implements Serializable {
+public class Admin implements Serializable {
     private static final long serialVersionUID = 988237113369610325L;
 
     private String account;

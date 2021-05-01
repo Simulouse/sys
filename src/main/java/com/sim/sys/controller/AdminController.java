@@ -2,7 +2,7 @@ package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sim.sys.entity.Admin;
-import com.sim.sys.service.impl.AdminServiceImpl;
+import com.sim.sys.service.impl.AdminService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 public class AdminController {
 
     @Resource
-    private AdminServiceImpl adminService;
+    private AdminService adminService;
 
     /**
      * 登陆

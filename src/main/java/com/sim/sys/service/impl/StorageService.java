@@ -1,10 +1,11 @@
 package com.sim.sys.service.impl;
 
+import com.sim.sys.dao.DeliveryDao;
+import com.sim.sys.dao.DeliveryStorageDao;
 import com.sim.sys.dao.StorageDao;
-import com.sim.sys.dao.TakingRecordDao;
+import com.sim.sys.entity.Delivery;
 import com.sim.sys.entity.Result;
 import com.sim.sys.entity.Storage;
-import com.sim.sys.entity.TakingRecord;
 import com.sim.sys.service.IStorageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,11 @@ public class StorageService implements IStorageService {
     private StorageDao storageDao;
 
     @Resource
-    private TakingRecordDao takingRecordDao;
+    private DeliveryDao deliveryDao;
+
+    @Resource
+    private DeliveryStorageDao deliveryStorageDao;
+
 
     @Override
     public List<Storage> findAllByFilter(Storage storage) {
@@ -45,24 +50,17 @@ public class StorageService implements IStorageService {
 
     @Override
     @Transactional
-    public Result update(String storageId, int nums) {
+    public Result delete(Delivery delivery) {
         Result result = new Result();
         result.setResult("ok");
 
-//        int resultOne = takingRecordDao
 
-        if (storageDao.updateStorageById(storageId, nums) == 0) result.setResult("no");
+        int resultOne = storageDao.deleteStorageById(delivery.getRecords().get(0).getStorage().getStorageId());
+        int resultTow = deliveryDao.insertDelivery(delivery);
+        int resultThree = deliveryStorageDao.insertDeliveryStorage(delivery.getRecords());
 
-        return result;
-    }
+        if (resultOne == 0 || resultTow == 0 || resultThree == 0) result.setResult("no");
 
-    @Override
-
-    public Result delete(String storageId) {
-        Result result = new Result();
-        result.setResult("ok");
-
-        if (storageDao.deleteStorageById(storageId) == 0) result.setResult("no");
 
         return result;
     }

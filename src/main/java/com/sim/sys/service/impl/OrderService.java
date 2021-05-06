@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Service("orderService")
-public class OrderServiceImpl implements IOrderService {
+public class OrderService implements IOrderService {
     @Resource
     private OrderDao orderDao;
 
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements IOrderService {
             return result;
         }
 
-        result.setResult("yes");
+        result.setResult("ok");
 
         return result;
     }

@@ -11,11 +11,11 @@ import java.util.List;
 @Mapper
 public interface PharmacistDao {
 
-    int verifyUser(@Param("pharmacistId") String pharmacistId, @Param("password")String password);
+    Pharmacist verifyUser(Pharmacist pharmacist);
 
     Pharmacist findPharmacistById(@Param("pharmacistId")String pharmacistId);
 
-    List<Pharmacist> findAllByFilter(Pharmacist pharmacist);
+    List<Pharmacist> findAllPharmacistByFilter(Pharmacist pharmacist);
 
     int insertPharmacist(Pharmacist pharmacist);
 

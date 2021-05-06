@@ -18,7 +18,7 @@ public class SupplierController {
     private SupplierService supplierService;
 
 
-    @PostMapping("findAllByFilter")
+    @PostMapping("findAll")
     @ApiOperation(value = "按条件查询供应商")
     public String findAllByFilter(@RequestBody Supplier supplier) {
         return JSON.toJSONString(this.supplierService.findAllByFilter(supplier));

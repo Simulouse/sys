@@ -16,6 +16,6 @@ public interface StorageDao {
 
     int deleteStorageById(@Param("storageId")String storageId);
 
-    int updateStorageById(@Param("storageId") String storageId, @Param("restNums") int restNums);
+    int updateStorageById(@Param("storageId") String storageId, @Param("takeNums") int takeNums);
 
 }

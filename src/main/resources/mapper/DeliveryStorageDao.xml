@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sim.sys.dao.DeliveryStorageDao">
+
+    <insert id="insertDeliveryStorage">
+        insert into delivery_storage (delivery_id, storage_id, nums) values
+        <foreach collection="records" separator="," item="record">
+            (#{record.deliveryId}, #{record.storage.storageId}, #{record.nums})
+        </foreach>
+    </insert>
+
+<!--    <delete id="deleteDeliveryStorageBy">-->
+<!--        delete from delivery_storage-->
+<!--        where delivery_storage.delivery_id = #{deliveryId}-->
+<!--    </delete>-->
+
+</mapper>
+

@@ -31,18 +31,18 @@
     </resultMap>
 
 
-    <select id="findAllByFilter" resultMap="orderMap">
+    <select id="findAllOrderByFilter" resultMap="orderMap">
         select
             o.order_id, o.time, o.state,
             om.medicine_id, om.nums,
             m.medicine_name,
             p.pharmacist_id, p.pharmacist_name,
-            s.supplier_id, s.name
+            s.supplier_id, s.supplier_name
         from tb_order  o
                  left join order_medicine  om on om.order_id = o.order_id
                  left join medicine  m on m.medicine_id = om.medicine_id
-                 left join tb_pharmacist  p on p.pharmacist_id = o.pharmacist_id
-                 left join tb_supplier  s on s.supplier_id = o.supplier_id
+                 left join pharmacist  p on p.pharmacist_id = o.pharmacist_id
+                 left join supplier  s on s.supplier_id = o.supplier_id
         <where>
             <if test="orderId != null and orderId != ''">
                 and o.order_id = #{orderId}
@@ -97,7 +97,7 @@
     <insert id="insertOrder" keyProperty="orderId">
         insert into tb_order (order_id, pharmacist_id, supplier_id, time, state)
         values
-        (#{orderId}, #{pharmacist.pharmacistId}, #{supplier.supplierId}, #{time}, #{state})
+        (#{orderId}, #{pharmacist.pharmacistId}, #{supplier.supplierId}, str_to_date(#{time}, '%Y-%m-%d %H:%i:%s'), #{state})
     </insert>
 
     <delete id="deleteOrderById">

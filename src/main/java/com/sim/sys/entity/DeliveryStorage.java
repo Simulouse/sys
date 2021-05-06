@@ -1,8 +1,8 @@
 package com.sim.sys.entity;
 
-public class DeliveryMedicine {
+public class DeliveryStorage {
     private String deliveryId;
-    private Medicine medicine;
+    private Storage storage;
     private int nums;
 
     public String getDeliveryId() {
@@ -21,11 +21,11 @@ public class DeliveryMedicine {
         this.nums = nums;
     }
 
-    public Medicine getMedicine() {
-        return medicine;
+    public Storage getStorage() {
+        return storage;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 }

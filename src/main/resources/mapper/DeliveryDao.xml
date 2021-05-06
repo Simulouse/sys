@@ -13,71 +13,71 @@
         </association>
 
 
-        <collection property="records" ofType="com.sim.sys.entity.DeliveryMedicine">
-            <result property="medicineId" column="medicine_id"/>
-            <result property="medicineName" column="medicine_name"/>
+        <collection property="records" ofType="com.sim.sys.entity.DeliveryStorage">
+            <result property="deliveryId" column="delivery_id"/>
             <result property="nums" column="nums"/>
+            <association property="storage" javaType="com.sim.sys.entity.Storage">
+                <result property="storageId" column="storage_id"/>
+                <association property="medicine" javaType="com.sim.sys.entity.Medicine">
+                    <result property="medicineId" column="medicine_id"/>
+                    <result property="medicineName" column="medicine_name"/>
+                </association>
+            </association>
         </collection>
 
 
     </resultMap>
 
-
     <select id="findAllDeliveryByFilter" resultMap="deliveryMap">
         select
-            p.delivery_id, p.delivery_time,
-            dm.medicine_id, dm.nums,
-            m.medicine_name,
-            p.pharmacist_id, p.pharmacist_name,
+            d.delivery_id, d.deliver_id, d.delivery_time,
+            ds.storage_id, ds.nums,
+            m.medicine_name
         from delivery  d
-                 left join delivery_medicine  dm on dm.delivery_id= d.delivery_id
-                 left join medicine  m on m.medicine_id = dm.medicine_id
-                 left join pharmacist  p on p.pharmacist_id = d.pharmacist_id
+                 left join delivery_storage  ds on ds.delivery_id= ds.delivery_id
+                 left join storage  s on s.storage_id = ds.storage_id
+                 left join medicine m on m.medicine_id = s.medicine_id
+                 left join pharmacist p on p.pharmacist_id = d.deliver_id
         <where>
             <if test="deliveryId != null and deliveryId != ''">
                 and p.delivery_id = #{deliveryId}
             </if>
             <if test="deliveryTime != null and deliveryTime != ''">
-                and p.delivery_time = #{deliveryTime}
+                and d.delivery_time = #{deliveryTime}
             </if>
-
             <if test="pharmacist != null">
                 <if test="pharmacist.pharmacistId != null and pharmacist.pharmacistId != ''">
                     and p.pharmacist_id = #{pharmacist.pharmacistId}
                 </if>
-                <if test="pharmacist.pharmacistName != null and pharmacist.pharmacistName != ''">
-                    and p.pharmacist_name = #{pharmacist.pharmacistName}
-                </if>
             </if>
-
-            <if test="filterMedicine != null">
-                <if test="filterMedicine.medicineId != null and filterMedicine.medicineId != ''">
-                    and dm.medicine_id = #{filterMedicine.medicineId}
+            <if test="filterStorage != null">
+                <if test="filterStorage.storageId != null and filterStorage.storageId != ''">
+                    and ds.storage_id = #{filterStorage.storageId}
+                </if>
+                <if test="filterStorage.medicine != null">
+                    <if test="filterStorage.medicine.medicineName != null and filterStorage.medicine.medicineName != ''">
+                        and m.medicine_name = #{filterStorage.medicine.medicineName}
+                    </if>
                 </if>
 
-                <if test="filterMedicine.medicineName != null and filterMedicine.medicineName != ''">
-                    and m.medicine_name = #{filterMedicine.medicineName}
-                </if>
             </if>
-
         </where>
     </select>
 
     <select id="findDeliveryById" resultMap="deliveryMap">
         select
-        p.delivery_id, p.delivery_time,
-        dm.medicine_id, dm.nums,
-        m.medicine_name,
-        p.pharmacist_id, p.pharmacist_name,
+            d.delivery_id, d.deliver_id, d.delivery_time,
+            ds.storage_id, ds.nums,
+            m.medicine_name
         from delivery  d
-        left join delivery_medicine  dm on dm.delivery_id= d.delivery_id
-        left join medicine  m on m.medicine_id = dm.medicine_id
-        left join pharmacist  p on p.pharmacist_id = d.pharmacist_id
+                 left join delivery_storage  ds on ds.delivery_id= ds.delivery_id
+                 left join storage  s on s.storage_id = ds.storage_id
+                 left join medicine m on m.medicine_id = s.medicine_id
         where p.delivery_id = #{deliveryId}
     </select>
 
     <insert id="insertDelivery" keyProperty="deliveryId">
-        insert into delivery (delivery_id, pharmacist_id, deliveryTime)
+        insert into delivery (delivery_id, deliver_id, delivery_time)
         values
         (#{deliveryId}, #{pharmacist.pharmacistId}, #{deliveryTime})
     </insert>

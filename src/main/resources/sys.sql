@@ -9,11 +9,29 @@ create table admin
 )
     charset = utf8;
 
+create table delivery
+(
+    delivery_id   varchar(255)                        not null,
+    deliver_id    varchar(255)                        not null,
+    delivery_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+)
+    charset = utf8;
+
+create table delivery_storage
+(
+    delivery_id varchar(255) not null,
+    storage_id  varchar(255) not null,
+    nums        int          not null,
+    primary key (delivery_id, storage_id)
+)
+    charset = utf8;
+
 create table entering
 (
-    order_id      varchar(255)                        not null
-        primary key,
-    entering_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+    order_id      varchar(255)                        not null,
+    entering_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    entering_id   varchar(255)                        not null
+        primary key
 )
     charset = utf8;
 
@@ -36,15 +54,32 @@ create table order_medicine
 )
     charset = utf8;
 
+create table pharmacist
+(
+    pharmacist_id   varchar(255) not null
+        primary key,
+    password        varchar(255) null,
+    pharmacist_name varchar(255) null
+)
+    charset = utf8;
+
 create table storage
 (
-    storage_id   varchar(255)                        not null
+    storage_id   varchar(255)  not null
         primary key,
-    price        decimal(5, 2)                       null,
-    rest_nums    int                                 null,
-    expired_time timestamp not null,
-    medicine_id  varchar(255)                        null,
-    order_id     varchar(255)                        null
+    price        decimal(5, 2) not null,
+    rest_nums    int           null,
+    order_id     varchar(255)  null,
+    medicine_id  varchar(255)  null,
+    expired_time date          null
+)
+    charset = utf8;
+
+create table supplier
+(
+    supplier_id   varchar(255) not null
+        primary key,
+    supplier_name varchar(255) not null
 )
     charset = utf8;
 
@@ -59,37 +94,3 @@ create table tb_order
 )
     charset = utf8;
 
-create table pharmacist
-(
-    pharmacist_id   varchar(255) not null
-        primary key,
-    password        varchar(255) null,
-    pharmacist_name varchar(255) null
-)
-    charset = utf8;
-
-create table supplier
-(
-    supplier_id   varchar(255) not null
-        primary key,
-    supplier_name varchar(255) not null
-)
-    charset = utf8;
-
-create table delivery
-(
-    delivery_id varchar(255) not null,
-    pharmacist_id varchar(255) not null,
-    delivery_time timestamp not null
-)
-    charset = utf8;
-
-create table delivery_medicine
-(
-    delivery_id varchar(255) not null,
-    medicine_id varchar(255) not null,
-    nums int not null,
-    constraint delivery_medicine_pk
-        unique (delivery_id, medicine_id)
-)
-    charset = utf8;

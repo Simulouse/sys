@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/pharmacist")
+@CrossOrigin(value = "*")
 public class PharmacistController {
 
     @Resource
@@ -33,10 +34,10 @@ public class PharmacistController {
         return JSON.toJSONString(pharmacistService.updatePharmacist(pharmacist));
     }
 
-    @GetMapping("/signIn")
+    @PostMapping("/signIn")
     @ApiOperation(value = "药师登录")
-    public String SignIn(@RequestParam String pharmacistId, @RequestParam String password){
-        return JSON.toJSONString(pharmacistService.verifyUser(pharmacistId, password));
+    public String SignIn(@RequestBody Pharmacist pharmacist){
+        return JSON.toJSONString(pharmacistService.verifyUser(pharmacist));
     }
 
     @PostMapping("/findAll")
@@ -47,10 +48,6 @@ public class PharmacistController {
 
 
 
-    /**
-     * 填写药单
-     * @return
-     */
     @GetMapping("/writePrescription")
     @ApiOperation(value = "填写药单")
     public String writePrescription(){

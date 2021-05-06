@@ -4,6 +4,7 @@ public class Storage {
     private String storageId;
     private String expiredTime;
     private String orderId;
+
     private float price;
 
     private int restNums;

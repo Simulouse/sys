@@ -6,15 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * (TbPharmacist)表服务接口
- *
- * @author makejava
- * @since 2021-04-20 09:46:34
- */
 public interface IPharmacistService {
 
-    Result verifyUser(String pharmacistId, String password);
+    Result verifyUser(Pharmacist pharmacist);
 
     Pharmacist findPharmacistById(String pharmacistId);
 

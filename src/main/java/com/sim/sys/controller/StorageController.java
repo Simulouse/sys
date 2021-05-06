@@ -1,6 +1,7 @@
 package com.sim.sys.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.sim.sys.entity.Delivery;
 import com.sim.sys.entity.Storage;
 import com.sim.sys.service.impl.StorageService;
 import io.swagger.annotations.ApiOperation;
@@ -19,9 +20,9 @@ public class StorageController {
     private StorageService storageService;
 
 
-    @PostMapping("findAllByFilter")
+    @PostMapping("findAll")
     @ApiOperation(value = "按条件查询库存")
-    public String findAllByFilter(@RequestBody Storage storage) {
+    public String findAll(@RequestBody Storage storage) {
         return JSON.toJSONString(storageService.findAllByFilter(storage));
     }
 
@@ -33,17 +34,17 @@ public class StorageController {
     }
 
 
-    @PostMapping("/deleteById")
+    @PostMapping("/delete")
     @ApiOperation(value = "删除库存")
-    public String delete(@RequestParam String storageId){
-        return JSON.toJSONString(storageService.delete(storageId));
+    public String delete(@RequestParam Delivery delivery){
+        return JSON.toJSONString(storageService.delete(delivery));
     }
 
 
-    @PostMapping("/updateSupplierById")
-    @ApiOperation(value = "更新库存余量")
-    public String updateById(@RequestParam String storageId, @RequestParam int restNums){
-        return JSON.toJSONString(storageService.update(storageId, restNums));
-    }
+//    @PostMapping("/updateSupplierById")
+//    @ApiOperation(value = "更新库存余量")
+//    public String updateById(@RequestParam String storageId, @RequestParam int restNums){
+//        return JSON.toJSONString(storageService.update(storageId, restNums));
+//    }
 
 }

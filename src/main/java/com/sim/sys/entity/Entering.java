@@ -1,35 +1,38 @@
 package com.sim.sys.entity;
 
-import java.util.Date;
 import java.io.Serializable;
 
-/**
- * (TbEntering)实体类
- *
- * @author makejava
- * @since 2021-04-20 09:44:41
- */
+
 public class Entering implements Serializable {
     private static final long serialVersionUID = -88110460761766315L;
 
-    private String orderId;
+    private String enteringId;
 
-    private Date enteringTime;
+    private String enteringTime;
 
+    private Order order;
 
-    public String getOrderId() {
-        return orderId;
+    public String getEnteringId() {
+        return enteringId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setEnteringId(String enteringId) {
+        this.enteringId = enteringId;
     }
 
-    public Date getEnteringTime() {
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public String getEnteringTime() {
         return enteringTime;
     }
 
-    public void setEnteringTime(Date enteringTime) {
+    public void setEnteringTime(String enteringTime) {
         this.enteringTime = enteringTime;
     }
 

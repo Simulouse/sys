@@ -4,13 +4,20 @@
 
     <resultMap type="com.sim.sys.entity.Storage" id="storageMap">
         <result property="storageId" column="storage_id" jdbcType="VARCHAR"/>
-        <result property="storageName" column="storage_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="restNums" column="rest_nums" jdbcType="INTEGER"/>
+        <result property="expiredTime" column="expired_time" jdbcType="DATE"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <association property="medicine" javaType="com.sim.sys.entity.Medicine">
+            <result property="medicineId" column="medicine_id" jdbcType="VARCHAR"/>
+            <result property="medicineName" column="medicine_name" jdbcType="VARCHAR"/>
+        </association>
     </resultMap>
 
 
     <select id="findAllStorageByFilter" resultMap="storageMap">
         select
-        s.storage_id, s.price, s.rest_nums, s.expired_time,
+        s.storage_id, s.price, s.rest_nums, s.expired_time, s.order_id,
         m.medicine_id, m.medicine_name
         from storage s
             left join medicine m on m.medicine_id = s.medicine_id
@@ -18,8 +25,8 @@
             <if test="storageId != null and storageId != ''">
                 and s.storage_id = #{storageId}
             </if>
-            <if test="price != null and storageName != ''">
-                and s.storage_name = #{storageName}
+            <if test="price != null and price != ''">
+                and s.price = #{price}
             </if>
             <if test="restNums != null and restNums != ''">
                 and s.rest_nums = #{restNums}
@@ -27,9 +34,15 @@
             <if test="expiredTime != null and expiredTime != ''">
                 and s.expired_time = #{expiredTime}
             </if>
-            <if test="medicine_id != null and medicine_id != ''">
-                and medicine_id = #{medicineId}
+            <if test="medicine != null">
+                <if test="medicine.medicineId != null and medicine.medicineId != ''">
+                    and m.medicine_id = #{medicine.medicineId}
+                </if>
+                <if test="medicine.medicineName != null and medicine.medicineName != ''">
+                    and m.medicine_id = #{medicine.medicineName}
+                </if>
             </if>
+
             <if test="orderId != null and orderId != ''">
                 and s.order_id = #{orderId}
             </if>
@@ -38,21 +51,24 @@
 
     <select id="findStorageByOrderId" resultMap="storageMap">
         select
-            s.storage_id, s.price, s.rest_nums, s.expired_time,
+            s.storage_id, s.price, s.rest_nums, s.expired_time, s.order_id,
             m.medicine_id, m.medicine_name
         from storage s
                  left join medicine m on m.medicine_id = s.medicine_id
         where order_id = #{orderId}
     </select>
 
-    <insert id="insertStorage" keyProperty="storageId">
-        insert into storage(storage_id, price, rest_nums, expired_time, medicine_id, order_id)
-        values (#{storageId}, #{price}, #{restNums}, #{expiredTiem}, #{medicineId}, #{order_id})
+    <insert id="insertStorageBatch" keyProperty="storageId">
+        insert into storage(storage_id, price, rest_nums, expired_time, medicine_id, order_id) values
+        <foreach collection="storages" separator="," item="storage">
+        (#{storage.storageId}, #{storage.price}, #{storage.restNums}, #{storage.expiredTime}, #{storage.medicine.medicineId}, #{storage.orderId})
+        </foreach>
+
     </insert>
 
     <update id="updateStorageById">
         update storage
-        set rest_nums = #{restNums}
+        set rest_nums = rest_nums - #{takeNums}
         where storage_id = #{storageId}
     </update>
 

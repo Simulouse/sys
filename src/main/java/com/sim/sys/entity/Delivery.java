@@ -6,9 +6,9 @@ public class Delivery {
     private String deliveryId;
     private Pharmacist pharmacist;
     private String deliveryTime;
-    private List<DeliveryMedicine> records;
+    private List<DeliveryStorage> records;
 
-    private Medicine filterMedicine;
+    private Storage filterStorage;
 
     public String getDeliveryId() {
         return deliveryId;
@@ -34,19 +34,19 @@ public class Delivery {
         this.deliveryTime = deliveryTime;
     }
 
-    public List<DeliveryMedicine> getRecords() {
+    public List<DeliveryStorage> getRecords() {
         return records;
     }
 
-    public void setRecords(List<DeliveryMedicine> records) {
+    public void setRecords(List<DeliveryStorage> records) {
         this.records = records;
     }
 
-    public Medicine getFilterMedicine() {
-        return filterMedicine;
+    public Storage getFilterStorage() {
+        return filterStorage;
     }
 
-    public void setFilterMedicine(Medicine filterMedicine) {
-        this.filterMedicine = filterMedicine;
+    public void setFilterStorage(Storage filterStorage) {
+        this.filterStorage = filterStorage;
     }
 }

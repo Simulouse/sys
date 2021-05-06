@@ -17,17 +17,23 @@ public class PharmacistService implements IPharmacistService {
     public PharmacistDao pharmacistDao;
 
     @Override
-    public Result verifyUser(String pharmacistId, String password) {
+    public Result verifyUser(Pharmacist pharmacist) {
         Result result = new Result();
         result.setResult("ok");
-        if (pharmacistDao.verifyUser(pharmacistId, password) == 0)
+
+        Pharmacist searchedPharmacist = pharmacistDao.verifyUser(pharmacist);
+        if (searchedPharmacist == null) {
             result.setResult("no");
+            return result;
+        }
+
+        result.setData(searchedPharmacist);
         return result;
     }
 
     @Override
     public List<Pharmacist> findAllByFilter(Pharmacist pharmacist) {
-        return pharmacistDao.findAllByFilter(pharmacist);
+        return pharmacistDao.findAllPharmacistByFilter(pharmacist);
     }
 
     @Override

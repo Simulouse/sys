@@ -15,7 +15,7 @@
         where pharmacist_id = #{pharmacistId}
     </select>
 
-    <select id="findAllByFilter" resultMap="pharmacistMap">
+    <select id="findAllPharmacistByFilter" resultMap="pharmacistMap">
         select
         pharmacist_id, pharmacistName, password
         from pharmacist p
@@ -31,6 +31,15 @@
             </if>
 
         </where>
+    </select>
+
+    <select id="verifyUser" resultMap="pharmacistMap">
+        select
+        pharmacist_id, pharmacist_name
+        from pharmacist p
+        where p.pharmacist_id = #{pharmacistId} and p.password = #{password}
+
+
     </select>
 
     <insert id="insertPharmacist" keyProperty="pharmacistId" useGeneratedKeys="true">

@@ -1,5 +1,6 @@
 package com.sim.sys.service;
 
+import com.sim.sys.entity.Delivery;
 import com.sim.sys.entity.Result;
 import com.sim.sys.entity.Storage;
 
@@ -11,7 +12,5 @@ public interface IStorageService {
 
     Result insert(List<Storage> storage);
 
-    Result update(String storageId, int restNums);
-
-    Result delete(String storageId);
+    Result delete(Delivery delivery);
 }

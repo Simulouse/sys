@@ -5,7 +5,7 @@
     <insert id="insertOrderMedicine">
         insert into order_medicine (order_id, medicine_id, nums) values
         <foreach collection="records" separator="," item="record">
-            (#{record.orderId}, #{record.medicine.medicineId})
+            (#{record.orderId}, #{record.medicine.medicineId}, #{record.nums})
         </foreach>
     </insert>
 

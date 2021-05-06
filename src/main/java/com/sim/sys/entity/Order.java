@@ -24,7 +24,7 @@ public class Order implements Serializable {
 
     private Integer state;
 
-    private MedicineTest filterMedicine;
+    private Medicine filterMedicine;
 
 
     public String getOrderId() {
@@ -75,11 +75,11 @@ public class Order implements Serializable {
         this.records = records;
     }
 
-    public MedicineTest getFilterMedicine() {
+    public Medicine getFilterMedicine() {
         return filterMedicine;
     }
 
-    public void setFilterMedicine(MedicineTest filterMedicine) {
+    public void setFilterMedicine(Medicine filterMedicine) {
         this.filterMedicine = filterMedicine;
     }
 }

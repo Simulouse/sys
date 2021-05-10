@@ -47,7 +47,10 @@ public class PharmacistService implements IPharmacistService {
 
         result.setResult("ok");
 
-        if (pharmacistDao.findPharmacistById(pharmacist.getPharmacistId()) != null) result.setResult("no");
+        if (pharmacistDao.findPharmacistById(pharmacist.getPharmacistId()) != null) {
+            result.setResult("no");
+            return result;
+        }
 
         if (pharmacistDao.insertPharmacist(pharmacist) == 0) result.setResult("no");
 
@@ -55,11 +58,11 @@ public class PharmacistService implements IPharmacistService {
     }
 
     @Override
-    public Result updatePharmacist(Pharmacist pharmacist) {
+    public Result updatePharmacist(Pharmacist pharmacist, String oldId) {
         Result result = new Result();
         result.setResult("ok");
 
-        if (pharmacistDao.updatePharmacist(pharmacist) <= 0)
+        if (pharmacistDao.updatePharmacist(pharmacist, oldId) <= 0)
             result.setResult("no");
 
         return result;

@@ -10,7 +10,11 @@ public interface EnteringDao {
 
     List<Entering> findAllEnteringByFilter(Entering entering);
 
+    Entering findEnteringById(String enteringId);
+
     int insertEntering(Entering entering);
+
+    int updateEnteringById(String enteringId, int state);
 
 }
 

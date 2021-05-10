@@ -55,9 +55,7 @@ public class OrderService implements IOrderService {
 
         result.setResult("ok");
 
-        this.orderDao.updateOrderStateById(orderId, state);
-
-        if (orderDao.findOrderById(orderId) != null) result.setResult("no");
+        if (orderDao.updateOrderStateById(orderId, state) == 0) result.setResult("no");
 
         return result;
     }

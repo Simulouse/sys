@@ -19,7 +19,6 @@
             <association property="storage" javaType="com.sim.sys.entity.Storage">
                 <result property="storageId" column="storage_id"/>
                 <association property="medicine" javaType="com.sim.sys.entity.Medicine">
-                    <result property="medicineId" column="medicine_id"/>
                     <result property="medicineName" column="medicine_name"/>
                 </association>
             </association>
@@ -32,11 +31,12 @@
         select
             d.delivery_id, d.deliver_id, d.delivery_time,
             ds.storage_id, ds.nums,
-            m.medicine_name
+            m.medicine_name,
+            p.pharmacist_id, p.pharmacist_name
         from delivery  d
-                 left join delivery_storage  ds on ds.delivery_id= ds.delivery_id
+                 left join delivery_storage  ds on d.delivery_id = ds.delivery_id
                  left join storage  s on s.storage_id = ds.storage_id
-                 left join medicine m on m.medicine_id = s.medicine_id
+                 left join medicine m on s.medicine_id = m.medicine_id
                  left join pharmacist p on p.pharmacist_id = d.deliver_id
         <where>
             <if test="deliveryId != null and deliveryId != ''">

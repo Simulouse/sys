@@ -12,20 +12,25 @@ public class Entering implements Serializable {
 
     private Order order;
 
+    private String orderId;
+
+    public Entering() {
+
+    }
+
+    public Entering(String enteringId, String orderId, String enteringTime) {
+        this.enteringId = enteringId;
+        this.orderId = orderId;
+        this.enteringTime = enteringTime;
+    }
+
+
     public String getEnteringId() {
         return enteringId;
     }
 
     public void setEnteringId(String enteringId) {
         this.enteringId = enteringId;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public String getEnteringTime() {
@@ -36,4 +41,19 @@ public class Entering implements Serializable {
         this.enteringTime = enteringTime;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 }

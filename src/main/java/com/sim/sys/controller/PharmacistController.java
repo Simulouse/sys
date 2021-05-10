@@ -30,8 +30,8 @@ public class PharmacistController {
 
     @PostMapping("/update")
     @ApiOperation(value = "更新药师")
-    public String update(@RequestBody Pharmacist pharmacist) {
-        return JSON.toJSONString(pharmacistService.updatePharmacist(pharmacist));
+    public String update(@RequestBody Pharmacist pharmacist, @RequestParam String oldId) {
+        return JSON.toJSONString(pharmacistService.updatePharmacist(pharmacist, oldId));
     }
 
     @PostMapping("/signIn")
@@ -44,13 +44,5 @@ public class PharmacistController {
     @ApiOperation(value = "按条件查找")
     public String findAll(@RequestBody Pharmacist pharmacist) {
         return JSON.toJSONString(pharmacistService.findAllByFilter(pharmacist));
-    }
-
-
-
-    @GetMapping("/writePrescription")
-    @ApiOperation(value = "填写药单")
-    public String writePrescription(){
-        return "/prescription_form";
     }
 }

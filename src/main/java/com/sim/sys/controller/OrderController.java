@@ -35,7 +35,7 @@ public class OrderController {
         return JSON.toJSONString(orderService.deleteOrderById(orderId));
     }
 
-    @PostMapping("/update")
+    @GetMapping("/update")
     @ApiOperation(value = "更新订单信息")
     public String update(@RequestParam String orderId, @RequestParam int state){
         return JSON.toJSONString(orderService.updateOrderStateById(orderId, state));

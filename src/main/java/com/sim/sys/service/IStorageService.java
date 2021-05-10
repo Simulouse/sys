@@ -10,7 +10,9 @@ public interface IStorageService {
 
     List<Storage> findAllByFilter(Storage storage);
 
-    Result insert(List<Storage> storage);
+    Result insert(List<Storage> storage, String enteringId, String enteringTime);
 
-    Result delete(Delivery delivery);
+    Result updateState(String storageId, int state);
+
+    Result updateRestNums(String storageId, int takeNums);
 }

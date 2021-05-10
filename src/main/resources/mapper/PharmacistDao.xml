@@ -10,14 +10,14 @@
 
     <select id="findPharmacistById" resultMap="pharmacistMap">
         select
-          p.pharmacist_id, p.pharmacistName, p.password
+          p.pharmacist_id, p.pharmacist_name, p.password
         from pharmacist p
         where pharmacist_id = #{pharmacistId}
     </select>
 
     <select id="findAllPharmacistByFilter" resultMap="pharmacistMap">
         select
-        pharmacist_id, pharmacistName, password
+        pharmacist_id, pharmacist_name, password
         from pharmacist p
         <where>
             <if test="pharmacistId != null and pharmacistId != ''">
@@ -42,7 +42,7 @@
 
     </select>
 
-    <insert id="insertPharmacist" keyProperty="pharmacistId" useGeneratedKeys="true">
+    <insert id="insertPharmacist" keyProperty="pharmacistId">
         insert into pharmacist(pharmacist_id, pharmacist_name, password)
         values (#{pharmacistId}, #{pharmacistName}, #{password})
     </insert>
@@ -56,8 +56,11 @@
             <if test="pharmacistName != null and pharmacistName != ''">
                 pharmacist_name = #{pharmacistName},
             </if>
+            <if test="pharmacistId != null and pharmacistId != ''">
+                pharmacist_id = #{pharmacistId},
+            </if>
         </set>
-        where pharmacist_id = #{pharmacistId}
+        where pharmacist_id = #{oldId}
     </update>
 
     <delete id="deletePharmacistById">

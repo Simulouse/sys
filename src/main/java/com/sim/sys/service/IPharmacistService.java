@@ -16,7 +16,7 @@ public interface IPharmacistService {
 
     Result insertPharmacist(Pharmacist pharmacist);
 
-    Result updatePharmacist(Pharmacist pharmacist);
+    Result updatePharmacist(Pharmacist pharmacist, String oldId);
 
     Result deletePharmacistById(String pharmacistId);
 

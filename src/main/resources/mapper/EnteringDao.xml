@@ -7,16 +7,14 @@
         <result property="enteringTime" column="entering_time" jdbcType="TIMESTAMP"/>
 
         <association property="order" javaType="com.sim.sys.entity.Order">
-
-            <result property="orderId" column="entering_id" jdbcType="VARCHAR"/>
-
+            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="time" column="time" jdbcType="VARCHAR"/>
             <collection property="records" ofType="com.sim.sys.entity.OrderMedicine">
                 <result property="nums" column="nums" jdbcType="INTEGER"/>
                 <association property="medicine" javaType="com.sim.sys.entity.Medicine">
                     <result property="medicine.medicineName" column="medicine_name" jdbcType="VARCHAR"/>
                 </association>
             </collection>
-
         </association>
 
     </resultMap>
@@ -24,10 +22,12 @@
     <select id="findAllEnteringByFilter" resultMap="enteringMap">
         select
         e.entering_id, e.entering_time, e.order_id,
+        o.time,
         om.nums,
         m.medicine_name
         from entering e
-            left join order_medicine om on om.entering_id = e.entering_id
+            left join tb_order o on o.order_id = e.order_id
+            left join order_medicine om on om.order_id = o.order_id
             left join medicine m on m.medicine_id = om.medicine_id
         <where>
             <if test="enteringId != null and enteringId != ''">
@@ -51,14 +51,23 @@
         </where>
     </select>
 
+    <select id="findEnteringById" resultMap="enteringMap">
+        select
+        e.entering_id, e.entering_time, e.order_id,
+        o.time,
+        om.nums,
+        m.medicine_names
+        from entering e
+        left join tb_order o on o.order_id = e.order_id
+        left join order_medicine om on om.order_id = o.order_id
+        left join medicine m on m.medicine_id = om.medicine_id
+        where e.entering_id = #{enteringId}
+    </select>
 
-    <insert id="insertEntering" keyProperty="enteringId" useGeneratedKeys="true">
-        insert into entering(entering_id , entering_time, order_id)
-        values (#{enteringId}, #{enteringTime}, #{order.orderId})
+    <insert id="insertEntering" keyProperty="enteringId">
+        insert into entering(entering_id, entering_time, order_id)
+        values (#{enteringId}, #{enteringTime}, #{orderId})
     </insert>
-
-
-
 
 
 </mapper>

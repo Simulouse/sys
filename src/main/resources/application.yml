@@ -5,7 +5,10 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-mybatis.mapper-locations: classpath:mapper/*.xml
-mybatis.type-aliases-package: com.sim.sys.entity
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sim.sys.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 8000

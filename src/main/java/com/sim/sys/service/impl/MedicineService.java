@@ -23,7 +23,7 @@ public class MedicineService implements IMedicineService {
     @Override
     public Result insert(Medicine medicine) {
         Result result = new Result();
-        result.setResult("yes");
+        result.setResult("ok");
 
         if (medicineDao.findMedicineById(medicine.getMedicineId()) != null) {
             result.setResult("no");
@@ -50,7 +50,7 @@ public class MedicineService implements IMedicineService {
     @Override
     public Result delete(String medicineId) {
         Result result = new Result();
-        result.setResult("yes");
+        result.setResult("ok");
 
         if (this.medicineDao.findMedicineById(medicineId) == null)
             return result;

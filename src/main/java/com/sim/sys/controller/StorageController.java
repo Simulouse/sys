@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,21 +25,29 @@ public class StorageController {
     @PostMapping("findAll")
     @ApiOperation(value = "按条件查询库存")
     public String findAll(@RequestBody Storage storage) {
-        return JSON.toJSONString(storageService.findAllByFilter(storage));
+        String result = JSON.toJSONString(storageService.findAllByFilter(storage));
+//        System.out.println(result);
+        return result;
     }
 
 
     @PostMapping("/insert")
     @ApiOperation(value = "批量添加库存")
-    public String insert(@RequestBody List<Storage> storages){
-        return JSON.toJSONString(storageService.insert(storages));
+    public String insert(@RequestBody List<Storage> storages, @RequestParam String enteringId){
+        return JSON.toJSONString(storageService.insert(storages, enteringId, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date().getTime())));
     }
 
 
-    @PostMapping("/delete")
+    @GetMapping("/updateState")
     @ApiOperation(value = "删除库存")
-    public String delete(@RequestParam Delivery delivery){
-        return JSON.toJSONString(storageService.delete(delivery));
+    public String updateState(@RequestParam String storageId, @RequestParam int state){
+        return JSON.toJSONString(storageService.updateState(storageId, state));
+    }
+
+    @GetMapping("/updateRestNums")
+    @ApiOperation(value = "删除库存")
+    public String updateRestNums(@RequestParam String storageId, @RequestParam int state){
+        return JSON.toJSONString(storageService.updateRestNums(storageId, state));
     }
 
 

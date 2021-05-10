@@ -19,7 +19,7 @@ public interface PharmacistDao {
 
     int insertPharmacist(Pharmacist pharmacist);
 
-    int updatePharmacist(Pharmacist pharmacist);
+    int updatePharmacist(Pharmacist pharmacist, @Param("oldId")String oldId);
 
     int deletePharmacistById(String pharmacistId);
 

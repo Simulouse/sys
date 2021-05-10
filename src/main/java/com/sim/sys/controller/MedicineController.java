@@ -23,18 +23,18 @@ public class MedicineController {
         return JSON.toJSONString(medicineService.insert(medicine));
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     @ApiOperation(value = "删除药品")
     public String deleteMedicineById(@RequestParam String medicineId){
         return JSON.toJSONString(medicineService.delete(medicineId));
     }
 
 
-    @PostMapping("/update")
-    @ApiOperation(value = "更新药品信息")
-    public String updateMedicineById(@RequestBody Medicine medicine, @RequestParam String oldMedicineId){
-        return JSON.toJSONString(medicineService.update(medicine, oldMedicineId));
-    }
+//    @PostMapping("/update")
+//    @ApiOperation(value = "更新药品信息")
+//    public String updateMedicineById(@RequestBody Medicine medicine, @RequestParam String oldMedicineId){
+//        return JSON.toJSONString(medicineService.update(medicine, oldMedicineId));
+//    }
 
 
     @PostMapping("/findAll")

@@ -14,8 +14,10 @@ public interface StorageDao {
 
     int insertStorageBatch(List<Storage> storages);
 
-    int deleteStorageById(@Param("storageId")String storageId);
+//    int deleteStorageById(@Param("storageId")String storageId);
 
-    int updateStorageById(@Param("storageId") String storageId, @Param("takeNums") int takeNums);
+    int updateStorageStateById(@Param("storageId") String storageId, @Param("state") int state);
+
+    int updateStorageRestNumsById(@Param("storageId") String storageId, @Param("takeNums") int takeNums);
 
 }

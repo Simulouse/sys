@@ -1,9 +1,9 @@
 package com.sim.sys.service.impl;
 
-import com.sim.sys.dao.DeliveryDao;
-import com.sim.sys.dao.DeliveryStorageDao;
-import com.sim.sys.dao.StorageDao;
+import com.alibaba.fastjson.JSON;
+import com.sim.sys.dao.*;
 import com.sim.sys.entity.Delivery;
+import com.sim.sys.entity.Entering;
 import com.sim.sys.entity.Result;
 import com.sim.sys.entity.Storage;
 import com.sim.sys.service.IStorageService;
@@ -25,14 +25,23 @@ public class StorageService implements IStorageService {
     @Resource
     private DeliveryStorageDao deliveryStorageDao;
 
+    @Resource
+    private EnteringDao enteringDao;
+
+    @Resource
+    private OrderDao orderDao;
+
 
     @Override
     public List<Storage> findAllByFilter(Storage storage) {
+        System.out.println(JSON.toJSONString(storage));
         return storageDao.findAllStorageByFilter(storage);
     }
 
     @Override
-    public Result insert(List<Storage> storages) {
+    @Transactional
+    public Result insert(List<Storage> storages, String enteringId, String enteringTime) {
+        System.out.println(enteringTime);
         Result result = new Result();
         result.setResult("ok");
 
@@ -41,26 +50,34 @@ public class StorageService implements IStorageService {
             return result;
         }
 
-        if (storageDao.insertStorageBatch(storages) == 0) result.setResult("no");
+        int resultOne = storageDao.insertStorageBatch(storages);
+        int resultTwo = enteringDao.insertEntering(new Entering(enteringId, storages.get(0).getOrderId(), enteringTime));
+        int resultThree = orderDao.updateOrderStateById(storages.get(0).getOrderId(), 3);
+
+        if (resultOne == 0 || resultTwo == 0 || resultThree == 0) result.setResult("no");
 
         return result;
-
 
     }
 
     @Override
     @Transactional
-    public Result delete(Delivery delivery) {
+    public Result updateState(String storageId, int state) {
         Result result = new Result();
         result.setResult("ok");
 
+        if (storageDao.updateStorageStateById(storageId, state) == 0) result.setResult("no");
 
-        int resultOne = storageDao.deleteStorageById(delivery.getRecords().get(0).getStorage().getStorageId());
-        int resultTow = deliveryDao.insertDelivery(delivery);
-        int resultThree = deliveryStorageDao.insertDeliveryStorage(delivery.getRecords());
+        return result;
+    }
 
-        if (resultOne == 0 || resultTow == 0 || resultThree == 0) result.setResult("no");
+    @Override
+    @Transactional
+    public Result updateRestNums(String storageId, int takeNums) {
+        Result result = new Result();
+        result.setResult("ok");
 
+        if (storageDao.updateStorageRestNumsById(storageId, takeNums) == 0) result.setResult("no");
 
         return result;
     }

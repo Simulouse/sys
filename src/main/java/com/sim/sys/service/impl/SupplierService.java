@@ -31,7 +31,7 @@ public class SupplierService implements com.sim.sys.service.ISupplierService {
         result.setResult("ok");
 
         if (supplierDao.findSupplierById(supplier.getSupplierId()) != null) {
-            result.setResult("on");
+            result.setResult("no");
             return result;
         }
 
@@ -41,11 +41,17 @@ public class SupplierService implements com.sim.sys.service.ISupplierService {
     }
 
     @Override
-    public Result update(Supplier supplier, String oldSupplierId) {
+    public Result update(Supplier supplier, String oldId) {
         Result result = new Result();
         result.setResult("ok");
+        System.out.println(oldId);
 
-        if (supplierDao.updateSupplierById(supplier, oldSupplierId) == 0) result.setResult("no");
+        if (supplierDao.findSupplierById(supplier.getSupplierId()) != null) {
+            result.setResult("no");
+            return result;
+        }
+
+        if (supplierDao.updateSupplierById(supplier, oldId) == 0) result.setResult("no");
 
         return result;
     }

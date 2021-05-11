@@ -50,14 +50,14 @@
     <update id="updatePharmacist">
         update pharmacist
         <set>
-            <if test="password != null and password != ''">
-                password = #{password},
+            <if test="pharmacist.password != null and pharmacist.password != ''">
+                password = #{pharmacist.password},
             </if>
-            <if test="pharmacistName != null and pharmacistName != ''">
-                pharmacist_name = #{pharmacistName},
+            <if test="pharmacist.pharmacistName != null and pharmacist.pharmacistName != ''">
+                pharmacist_name = #{pharmacist.pharmacistName},
             </if>
-            <if test="pharmacistId != null and pharmacistId != ''">
-                pharmacist_id = #{pharmacistId},
+            <if test="pharmacist.pharmacistId != null and pharmacist.pharmacistId != ''">
+                pharmacist_id = #{pharmacist.pharmacistId}
             </if>
         </set>
         where pharmacist_id = #{oldId}

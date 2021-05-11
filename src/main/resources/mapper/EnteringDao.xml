@@ -9,11 +9,16 @@
         <association property="order" javaType="com.sim.sys.entity.Order">
             <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
             <result property="time" column="time" jdbcType="VARCHAR"/>
+            <association property="pharmacist" javaType="com.sim.sys.entity.Pharmacist">
+                <result property="pharmacistId" column="pharmacist_id" jdbcType="VARCHAR"/>
+                <result property="pharmacistName" column="pharmacist_name" jdbcType="VARCHAR"/>
+            </association>
             <collection property="records" ofType="com.sim.sys.entity.OrderMedicine">
                 <result property="nums" column="nums" jdbcType="INTEGER"/>
                 <association property="medicine" javaType="com.sim.sys.entity.Medicine">
-                    <result property="medicine.medicineName" column="medicine_name" jdbcType="VARCHAR"/>
+                    <result property="medicineName" column="medicine_name" jdbcType="VARCHAR"/>
                 </association>
+
             </collection>
         </association>
 
@@ -24,10 +29,12 @@
         e.entering_id, e.entering_time, e.order_id,
         o.time,
         om.nums,
-        m.medicine_name
+        m.medicine_name,
+        p.pharmacist_id, p.pharmacist_name
         from entering e
             left join tb_order o on o.order_id = e.order_id
             left join order_medicine om on om.order_id = o.order_id
+            left join pharmacist p on p.pharmacist_id = o.pharmacist_id
             left join medicine m on m.medicine_id = om.medicine_id
         <where>
             <if test="enteringId != null and enteringId != ''">
@@ -38,12 +45,17 @@
             </if>
 
             <if test="order != null">
-                <if test="orderId != null and orderId != ''">
-                    and order_id = #{orderId}
+                <if test="order.orderId != null and order.orderId != ''">
+                    and e.order_id = #{order.orderId}
                 </if>
                 <if test="order.filterMedicine != null">
                     <if test="order.filterMedicine.medicineName != null and order.filterMedicine.medicineName != ''">
                         and m.medicine_name = #{order.filterMedicine.medicineName}
+                    </if>
+                </if>
+                <if test="order.pharmacist != null">
+                    <if test="order.pharmacist.pharmacistId != null and order.pharmacist.pharmacistId != ''">
+                        and p.pharmacist_id = #{order.pharmacist.pharmacistId}
                     </if>
                 </if>
 

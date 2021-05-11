@@ -36,7 +36,6 @@
             <if test="orderId != null and orderId != ''">
                 and s.order_id = #{orderId}
             </if>
-
         </where>
     </select>
 

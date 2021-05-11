@@ -8,28 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 
-/**
- * @author:
- * @date： 2021/4/21 15:03
- */
 @RestController
 @CrossOrigin(value = "*")
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdminController {
 
     @Resource
     private AdminService adminService;
 
-    /**
-     * 登陆
-     * @param account
-     * @param password
-     * @return
-     */
-    @GetMapping("/signIn")
+    @PostMapping("/signIn")
     @ApiOperation(value = "登录")
-    public String  verifyUserSignIn(@RequestParam String account, @RequestParam String password){
-        return JSON.toJSONString(adminService.verifyUser(new Admin(account, password)));
+    public String  verifyUserSignIn(@RequestBody Admin admin){
+        return JSON.toJSONString(adminService.verifyUser(admin));
     }
 
 

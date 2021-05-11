@@ -13,7 +13,7 @@ public interface SupplierDao {
 
     int insertSupplier(Supplier supplier);
 
-    int updateSupplierById(Supplier supplier, @Param("oldSupplierId") String oldSupplierId);
+    int updateSupplierById(Supplier supplier, @Param("oldId") String oldId);
 
     int deleteSupplierById(@Param("supplierId") String supplierId);
 

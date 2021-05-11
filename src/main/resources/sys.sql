@@ -71,7 +71,8 @@ create table storage
     rest_nums    int           null,
     order_id     varchar(255)  null,
     medicine_id  varchar(255)  null,
-    expired_time date          null
+    expired_time date          null,
+    state        int default 0 not null
 )
     charset = utf8;
 

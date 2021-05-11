@@ -62,7 +62,12 @@ public class PharmacistService implements IPharmacistService {
         Result result = new Result();
         result.setResult("ok");
 
-        if (pharmacistDao.updatePharmacist(pharmacist, oldId) <= 0)
+        if (!oldId.equals(pharmacist.getPharmacistId()) && pharmacistDao.findPharmacistById(pharmacist.getPharmacistId()) != null){
+            result.setResult("no");
+            return result;
+        }
+
+        if (pharmacistDao.updatePharmacist(pharmacist, oldId) == 0)
             result.setResult("no");
 
         return result;

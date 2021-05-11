@@ -44,7 +44,7 @@
                 supplier_id = #{supplier.supplierId},
             </if>
         </set>
-        where supplier_id = #{oldSupplierId}
+        where supplier_id = #{oldId}
     </update>
 
     <delete id="deleteSupplierById">

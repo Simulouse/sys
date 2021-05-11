@@ -32,17 +32,17 @@ public class SupplierController {
     }
 
 
-    @PostMapping("/deleteById")
+    @GetMapping("/delete")
     @ApiOperation(value = "删除供应商")
     public String delete(@RequestParam String supplierId){
         return JSON.toJSONString(supplierService.deleteById(supplierId));
     }
 
 
-    @PostMapping("/updateSupplierById")
+    @PostMapping("/update")
     @ApiOperation(value = "更新供应商信息")
-    public String update(@RequestBody Supplier supplier, @RequestParam String oldSupplierId){
-        return JSON.toJSONString(supplierService.update(supplier, oldSupplierId));
+    public String update(@RequestBody Supplier supplier, @RequestParam String oldId){
+        return JSON.toJSONString(supplierService.update(supplier, oldId));
     }
 
 }
